@@ -1,4 +1,4 @@
 function redirectToChatbot() {
-    // Redirect to the desired website for now
+    // Redirect all buttons to the correct chatbot URL
     window.location.href = "https://cordz-del.github.io/Amie-Chatbot-Frontend/";
 }
