@@ -21,14 +21,6 @@ header {
     -webkit-text-fill-color: transparent;
 }
 
-#amie-header {
-    font-size: 4rem;
-    background: linear-gradient(to right, #0056b3, #89cfff); /* No changes */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 10px;
-}
-
 #amie-subheader {
     font-size: 1.2rem;
     color: #555;
