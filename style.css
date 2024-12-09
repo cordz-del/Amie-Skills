@@ -13,12 +13,12 @@ header {
     margin: 20px 0;
 }
 
-#amie-title {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    background: linear-gradient(to right, #0056b3, #89cfff); /* Matches button gradient */
+#amie-header {
+    font-size: 4rem;
+    background: linear-gradient(to right, #0056b3, #89cfff); /* No changes */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
 }
 
 #amie-subheader {
