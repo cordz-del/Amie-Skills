@@ -16,7 +16,7 @@ header {
 #amie-title {
     font-size: 3rem;
     margin-bottom: 20px;
-    background: linear-gradient(to right, #003580, #b0dfff); /* Adjusted gradient */
+    background: linear-gradient(to right, #0056b3, #89cfff); /* Matches button gradient */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
