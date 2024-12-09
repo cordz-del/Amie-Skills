@@ -10,15 +10,15 @@ body {
 
 /* Header Styling */
 header {
-    margin: 20px 0;
+    margin: 30px 0;
 }
 
-#amie-header {
-    font-size: 4rem;
-    background: linear-gradient(to right, #0056b3, #89cfff); /* No changes */
+#amie-title {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    background: linear-gradient(to right, #0056b3, #007bff, #89cfff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 10px;
 }
 
 #amie-subheader {
