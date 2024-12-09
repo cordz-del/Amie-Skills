@@ -15,7 +15,7 @@ header {
 
 #amie-header {
     font-size: 4rem;
-    background: linear-gradient(to right, #0056b3, #00bfff);
+    background: linear-gradient(to right, #003366, #00ccff); /* Fixed gradient to dark blue -> light blue */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 10px;
@@ -62,4 +62,11 @@ footer {
     margin-top: 20px;
     font-size: 0.9rem;
     color: #666;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .buttons-grid {
+        grid-template-columns: 1fr; /* Stack buttons vertically on smaller screens */
+    }
 }
