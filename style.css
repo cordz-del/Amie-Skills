@@ -18,9 +18,9 @@ header {
     text-align: center;
 }
 
-#amie-header {
+#amie-title {
     font-size: 4rem;
-    background: linear-gradient(to right, #003366, #00ccff, #e0f7fa); /* Dark blue to very light blue */
+    background: linear-gradient(to right, #003366, #00ccff, #f0f8ff); /* Dark blue to light blue to off-white */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 10px;
@@ -32,38 +32,7 @@ header {
     margin: 0 20px;
 }
 
-/* Buttons Grid */
-.buttons-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-button {
-    background: linear-gradient(to right, #003366, #00ccff);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    padding: 20px;
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-}
-
-button:hover {
-    background: linear-gradient(to right, #005580, #66d9ff);
-    transform: scale(1.05);
-}
-
-/* Chat Container Styling */
+/* Chat Container */
 #chat-container {
     background-color: white;
     border-radius: 12px;
@@ -90,24 +59,65 @@ button:hover {
     text-align: center;
 }
 
+/* Input Section */
+#chat-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+
+#chat-input {
+    flex: 1;
+    padding: 10px;
+    font-size: 0.9rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#send-button {
+    padding: 10px;
+    font-size: 0.9rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#send-button:hover {
+    background-color: #0056b3;
+}
+
+/* Reset Button */
+#reset-chat-btn {
+    margin-top: 20px;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+    max-width: 150px;
+}
+
+#reset-chat-btn:hover {
+    background-color: #0056b3;
+}
+
 /* Footer Styling */
 footer {
     margin-top: 20px;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: #666;
+    text-align: center;
+    width: calc(100% - 20px);
 }
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-    .buttons-grid {
-        grid-template-columns: 1fr; /* Stack buttons vertically on smaller screens */
-    }
-
-    #chat-container {
-        width: 95%;
-    }
-
-    #amie-header {
-        font-size: 3rem; /* Adjust font size for smaller screens */
-    }
-}
+    #am
