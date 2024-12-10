@@ -16,14 +16,14 @@ header {
 #amie-title {
     font-size: 3rem;
     margin-bottom: 20px;
-    background: linear-gradient(to right, #0056b3, #cce7ff);
+    background: linear-gradient(to right, #003580, #b0dfff); /* Adjusted gradient */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 #amie-header {
     font-size: 4rem;
-    background: linear-gradient(to right, #0056b3, #89cfff); /* Removed duplicate gradient */
+    background: linear-gradient(to right, #0056b3, #89cfff); /* No changes */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 10px;
@@ -45,7 +45,7 @@ header {
 }
 
 button {
-    background: linear-gradient(to right, #0056b3, #89cfff); /* Consistent gradient */
+    background: linear-gradient(to right, #0056b3, #89cfff); /* No changes */
     color: white;
     border: none;
     border-radius: 8px;
