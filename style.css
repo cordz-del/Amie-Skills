@@ -32,6 +32,8 @@ header {
 #amie-subheader {
     font-size: 1.2rem;
     color: #555;
+    padding: 0 5%; /* Added 5% padding for left and right indention */
+    box-sizing: border-box; /* Ensures padding doesn't affect layout width */
 }
 
 /* Buttons Grid */
