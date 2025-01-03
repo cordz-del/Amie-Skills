@@ -67,6 +67,14 @@ button:hover {
     transform: scale(1.05);
 }
 
+/* Disabled Buttons Styling */
+button:disabled {
+    background-color: #ccc; /* Light gray background */
+    color: #666; /* Dark gray text */
+    cursor: not-allowed; /* Show a not-allowed cursor */
+    opacity: 0.6; /* Make the button appear less prominent */
+}
+
 /* Footer Styling */
 footer {
     margin-top: 20px;
