@@ -69,10 +69,11 @@ button:hover {
 
 /* Disabled Buttons Styling */
 button:disabled {
-    background-color: #ccc; /* Light gray background */
-    color: #666; /* Dark gray text */
-    cursor: not-allowed; /* Show a not-allowed cursor */
-    opacity: 0.6; /* Make the button appear less prominent */
+    background-color: #ccc !important; /* Light gray background */
+    color: #666 !important; /* Dark gray text */
+    cursor: not-allowed !important; /* Show a not-allowed cursor */
+    opacity: 0.6 !important; /* Make the button appear less prominent */
+    background-image: none !important; /* Remove gradient if present */
 }
 
 /* Footer Styling */
