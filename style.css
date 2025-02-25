@@ -70,9 +70,9 @@ button:hover {
 /* Disabled Buttons Styling */
 button:disabled {
     background-color: #ccc !important; /* Light gray background */
-    color: #666 !important; /* Dark gray text */
-    cursor: not-allowed !important; /* Show a not-allowed cursor */
-    opacity: 0.6 !important; /* Make the button appear less prominent */
+    color: #666 !important;           /* Dark gray text */
+    cursor: not-allowed !important;   /* Show a not-allowed cursor */
+    opacity: 0.6 !important;          /* Make the button appear less prominent */
     background-image: none !important; /* Remove gradient if present */
 }
 
@@ -83,9 +83,38 @@ footer {
     color: #666;
 }
 
+/* Emotion Boxes Colors */
+.happy    { background-color: yellow; }
+.sad      { background-color: blue; }
+.angry    { background-color: red; }
+.fearful  { background-color: purple; }
+.depressed { background-color: #483D8B; } /* Dark Slate Blue for Depressed */
+.lonely    { background-color: #696969; } /* Dim Gray for Lonely */
+
+/* Optional: Emotion Boxes layout (if using the section in index.html) */
+.emotion-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+}
+
+.emotion-boxes div {
+    flex: 0 0 150px;
+    height: 100px;
+    line-height: 100px;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
 /* Responsive Adjustments */
 @media (max-width: 768px) {
     .buttons-grid {
         grid-template-columns: 1fr; /* Stack buttons vertically on smaller screens */
+    }
+    .emotion-boxes div {
+        flex: 1 0 40%;
     }
 }
