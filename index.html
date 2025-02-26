@@ -1,50 +1,290 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Amie - SEL Platform</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Amie Chatbot</title>
+  <style>
+    /* Global Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      text-align: center;
+      padding: 20px;
+      background-color: #007bff;
+      color: #fff;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 36px;
+    }
+    /* Updated description */
+    header p {
+      margin: 5px 0 0;
+      font-size: 18px;
+      font-weight: lighter;
+    }
+
+    /* Chat Container */
+    #chat-container {
+      width: 100%;
+      max-width: 800px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      height: 400px;
+      overflow-y: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      flex-grow: 1;
+    }
+
+    /* Message Bubbles */
+    .message {
+      display: inline-block;  /* Let the bubble size to content */
+      max-width: 80%;         /* Limit bubble width */
+      word-wrap: break-word;  /* Wrap long words */
+      margin-bottom: 10px;
+      padding: 8px;
+      border-radius: 4px;
+      clear: both;            /* Keep messages stacked vertically */
+      color: #000;            /* Ensure text is clearly visible */
+    }
+    .user-message {
+      background: #d0e4ff;    /* Light blue for user messages */
+      text-align: right;
+      float: right;
+    }
+    .bot-message {
+      background: #99c2ff;    /* Slightly darker blue for bot messages */
+      text-align: left;
+      float: left;
+    }
+
+    /* Form and Buttons */
+    form {
+      max-width: 800px;
+      margin: 20px auto;
+      display: flex;
+    }
+    #message-input {
+      flex: 1;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      padding: 10px;
+      font-size: 16px;
+      margin-left: 10px;
+      border: none;
+      background: #007bff;
+      color: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    #speak-button, #record-button {
+      margin: 20px auto;
+      display: block;
+    }
+    #record-button {
+      background: #ff9800; /* Orange for recording */
+    }
+
+    /* New, more stylized footer */
+    footer {
+      background: linear-gradient(135deg, #0056b3, #007bff);
+      color: #fff;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: auto;
+    }
+    footer p {
+      margin: 0;
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h1 id="amie-header">Amie</h1>
-    <h2 id="assistant-subheader">Your Therapeutic Assistant</h2>
+    <h1>Amie</h1>
+    <p>Therapeutic Emotional &amp; Mental Health Assistant</p>
   </header>
-  <main>
-    <div class="buttons-grid">
-      <button class="stressed">
-        <strong>Stressed</strong><br />
-        A state of mental or emotional strain or tension.
-      </button>
-      <button class="sad">
-        <strong>Sad</strong><br />
-        A feeling of sorrow or unhappiness.
-      </button>
-      <button class="angry">
-        <strong>Angry</strong><br />
-        A strong feeling of displeasure or hostility.
-      </button>
-      <button class="anxiety">
-        <strong>Anxiety</strong><br />
-        A feeling of worry or apprehension.
-      </button>
-      <button class="depressed">
-        <strong>Depressed</strong><br />
-        A mood marked by deep sadness and low energy.
-      </button>
-      <button class="lonely">
-        <strong>Lonely</strong><br />
-        A feeling of isolation or solitude.
-      </button>
-    </div>
-  </main>
+
+  <div id="chat-container"></div>
+
+  <form id="input-form">
+    <input type="text" id="message-input" placeholder="Type your message..." autocomplete="off" required />
+    <button type="submit">Send</button>
+  </form>
+
+  <button id="speak-button">Speak Last Bot Message (TTS)</button>
+  <button id="record-button">Speak to Chatbot (Deepgram)</button>
+
   <footer>
-    <div class="footer-content">
-      <p>&copy; 2025 Amie. All Rights Reserved.</p>
-      <p>Crafted with precision &amp; care by the Amie Development Team.</p>
-    </div>
+    <p>&copy; 2025 Amie. All Rights Reserved.</p>
   </footer>
-  <script src="script.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const chatContainer = document.getElementById("chat-container");
+      const speakButton = document.getElementById("speak-button");
+      const recordButton = document.getElementById("record-button");
+      const inputForm = document.getElementById("input-form");
+      const messageInput = document.getElementById("message-input");
+
+      /**
+       * Append a new message to the chat window.
+       *
+       * @param {string} message - The message text.
+       * @param {string} sender - "user" or "bot" to determine styling.
+       */
+      function addMessage(message, sender) {
+        const messageDiv = document.createElement("div");
+        messageDiv.classList.add("message", sender + "-message");
+        messageDiv.textContent = message;
+        chatContainer.appendChild(messageDiv);
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+      }
+
+      /**
+       * Send the user's message to the backend.
+       *
+       * @param {string} message - The user's message.
+       */
+      function sendMessage(message) {
+        fetch("/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: message })
+        })
+        .then(response => response.json())
+        .then(data => {
+          addMessage(data.response, "bot");
+        })
+        .catch(error => console.error("Error:", error));
+      }
+
+      // Listen for form submission to send messages.
+      inputForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const message = messageInput.value.trim();
+        if (!message) return;
+        addMessage(message, "user");
+        sendMessage(message);
+        messageInput.value = "";
+      });
+
+      /**
+       * TTS: When the speak button is clicked, retrieve the last bot message,
+       * set up SpeechSynthesisUtterance with a female voice (if available),
+       * slow down the speech rate, and speak the message.
+       */
+      speakButton.addEventListener("click", function () {
+        const botMessages = document.getElementsByClassName("bot-message");
+        if (botMessages.length === 0) return;
+        const lastBotMessage = botMessages[botMessages.length - 1].textContent;
+        const utterance = new SpeechSynthesisUtterance(lastBotMessage);
+
+        // Select a female voice if available.
+        const voices = window.speechSynthesis.getVoices();
+        for (let i = 0; i < voices.length; i++) {
+          const voiceName = voices[i].name.toLowerCase();
+          if (voiceName.includes("zira") || voiceName.includes("female")) {
+            utterance.voice = voices[i];
+            break;
+          }
+        }
+        // Set a slower speech rate.
+        utterance.rate = 0.85;
+        window.speechSynthesis.speak(utterance);
+      });
+
+      // Media recording variables for Deepgram integration.
+      let mediaRecorder;
+      let recordedChunks = [];
+      let isRecording = false;
+
+      // Function to start recording audio.
+      function startRecording() {
+        navigator.mediaDevices.getUserMedia({ audio: true })
+          .then(stream => {
+            mediaRecorder = new MediaRecorder(stream);
+            recordedChunks = [];
+
+            mediaRecorder.ondataavailable = function(e) {
+              if (e.data.size > 0) {
+                recordedChunks.push(e.data);
+              }
+            };
+
+            mediaRecorder.onstop = function() {
+              const blob = new Blob(recordedChunks, { type: 'audio/webm' });
+              sendAudio(blob);
+            };
+
+            mediaRecorder.start();
+            isRecording = true;
+            recordButton.textContent = "Stop Recording";
+          })
+          .catch(error => {
+            console.error("Error accessing microphone:", error);
+          });
+      }
+
+      // Function to stop recording audio.
+      function stopRecording() {
+        if (mediaRecorder && isRecording) {
+          mediaRecorder.stop();
+          isRecording = false;
+          recordButton.textContent = "Speak to Chatbot (Deepgram)";
+        }
+      }
+
+      // Function to send recorded audio to the /transcribe endpoint.
+      function sendAudio(blob) {
+        const formData = new FormData();
+        formData.append('audio', blob, 'recording.webm');
+
+        fetch("/transcribe", {
+          method: "POST",
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.transcript) {
+            addMessage(data.transcript, "user");
+            sendMessage(data.transcript);
+          } else {
+            console.error("No transcript received:", data);
+          }
+        })
+        .catch(error => console.error("Error in transcription:", error));
+      }
+
+      // Event listener for the record button.
+      recordButton.addEventListener("click", function () {
+        if (!isRecording) {
+          startRecording();
+        } else {
+          stopRecording();
+        }
+      });
+
+      // Ensure voices are loaded for browsers that load them asynchronously.
+      if (typeof speechSynthesis !== "undefined" && speechSynthesis.onvoiceschanged !== undefined) {
+        speechSynthesis.onvoiceschanged = function () {
+          console.log("Voices loaded.");
+        };
+      }
+    });
+  </script>
 </body>
 </html>
