@@ -60,7 +60,7 @@ button.stressed {
     background: linear-gradient(to right, #9b59b6, #8e44ad);  /* Purple gradient for "Stressed" */
 }
 button.sad {
-    background: linear-gradient(to right, #89CFF0, #1E90FF);
+    background: linear-gradient(to right, #003366, #001f4f);
 }
 button.angry {
     background: linear-gradient(to right, #ff7e7e, #ff0000);
