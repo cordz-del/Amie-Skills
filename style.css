@@ -1,102 +1,99 @@
-/* General Styling */
+/* Basic resets */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f0f4f8;
-    color: #333;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    min-height: 100vh;             /* Ensure full viewport height */
-    display: flex;                 /* Enable flex layout */
-    flex-direction: column;        /* Stack header, main, footer vertically */
+  font-family: Arial, sans-serif;
+  background-color: #fafafa;
+  color: #333;
 }
 
-/* Header Styling */
+/* Header styling */
 header {
-    margin: 20px 0;
+  text-align: center;
+  padding: 2rem 1rem 1rem;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #ddd;
 }
 
-#amie-header {
-    font-size: 4rem;
-    background: linear-gradient(to right, #0056b3, #89cfff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 10px;
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
 }
 
-#assistant-subheader {
-    font-size: 1.5rem;
-    color: #555;
-    margin: 0;
+header p {
+  font-size: 1.2rem;
+  color: #666;
 }
 
-/* Buttons Grid */
-.buttons-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+/* Main section */
+main {
+  padding: 2rem 1rem;
 }
 
-button {
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    padding: 20px;
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+/* Emotion boxes layout */
+.emotion-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-/* Emotion-Specific Buttons with Linear Gradients */
-button.stressed {
-    background: linear-gradient(to right, #9b59b6, #8e44ad);  /* Purple gradient for "Stressed" */
-}
-button.sad {
-    background: linear-gradient(to right, #003366, #001f4f);
-}
-button.angry {
-    background: linear-gradient(to right, #ff7e7e, #ff0000);
-}
-button.anxiety {
-    background: linear-gradient(to right, #FF8C00, #FF4500);  /* Orange gradient for "Anxiety" */
-}
-button.depressed {
-    background: linear-gradient(to right, #483D8B, #6A5ACD);
-}
-button.lonely {
-    background: linear-gradient(to right, #A9A9A9, #696969);
+.emotion-box {
+  padding: 1.5rem;
+  border-radius: 8px;
+  color: #fff;
+  text-align: center;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-/* Button Hover Effect */
-button:hover {
-    transform: scale(1.05);
+.emotion-box h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
 }
 
-/* Footer Styling */
+/* Example colors for each emotion */
+.stressed {
+  background-color: #9b59b6; /* Purple */
+}
+
+.sad {
+  background-color: #3498db; /* Blue */
+}
+
+.angry {
+  background-color: #e74c3c; /* Red */
+}
+
+.anxiety {
+  background-color: #f39c12; /* Orange */
+}
+
+.depressed {
+  background-color: #8e44ad; /* Dark Purple */
+}
+
+.lonely {
+  background-color: #95a5a6; /* Gray */
+}
+
+/* Footer */
 footer {
-    background-color: #333;
-    color: #fff;
-    padding: 20px 0;
-    text-align: center;
-    margin-top: 40px;
-    font-size: 0.9rem;
+  text-align: center;
+  padding: 1rem;
+  background-color: #f8f8f8;
+  border-top: 1px solid #ddd;
+  margin-top: 2rem;
 }
 
-footer .footer-content p {
-    margin: 5px;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .buttons-grid {
-        grid-template-columns: 1fr;
-    }
+footer p {
+  font-size: 0.9rem;
+  color: #666;
 }
