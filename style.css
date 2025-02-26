@@ -6,6 +6,9 @@ body {
     margin: 0;
     padding: 0;
     text-align: center;
+    min-height: 100vh;             /* Ensure full viewport height */
+    display: flex;                 /* Enable flex layout */
+    flex-direction: column;        /* Stack header, main, footer vertically */
 }
 
 /* Header Styling */
@@ -53,8 +56,8 @@ button {
 }
 
 /* Emotion-Specific Buttons with Linear Gradients */
-button.happy {
-    background: linear-gradient(to right, #FF8C00, #FF4500); /* Darker orange gradient */
+button.stressed {
+    background: linear-gradient(to right, #9b59b6, #8e44ad);  /* Purple gradient for "Stressed" */
 }
 button.sad {
     background: linear-gradient(to right, #89CFF0, #1E90FF);
@@ -62,8 +65,8 @@ button.sad {
 button.angry {
     background: linear-gradient(to right, #ff7e7e, #ff0000);
 }
-button.fearful {
-    background: linear-gradient(to right, #9b59b6, #8e44ad);
+button.anxiety {
+    background: linear-gradient(to right, #FF8C00, #FF4500);  /* Orange gradient for "Anxiety" */
 }
 button.depressed {
     background: linear-gradient(to right, #483D8B, #6A5ACD);
