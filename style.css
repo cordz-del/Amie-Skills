@@ -19,13 +19,14 @@ header {
   text-align: center;
   padding: 2rem 1rem 1rem;
   height: 8rem;
-  background: linear-gradient(to right, #0056b3, #89cfff);
+  background: transparent; /* Changed from linear gradient */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: white;
 }
+
 
 header h1 {
   font-size: 8rem;
