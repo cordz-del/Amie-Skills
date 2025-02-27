@@ -19,7 +19,7 @@ body {
   width: 100%;
   text-align: center;
   padding: 2rem 0;
-  background-color: #e6e6e6;
+  background-color: transparent;
 }
 
 .header h1 {
