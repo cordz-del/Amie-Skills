@@ -78,25 +78,27 @@ main {
   justify-content: center;
 }
 
-/* Emotion-Specific Buttons with Linear Gradients */
-.stressed {
-  background: linear-gradient(to right, #9b59b6, #8e44ad);
-}
+/* 1. Darker linear gradient purple for Stress */
+.stress {
+  background: linear-gradient(135deg, #2E0040, #580067);
 
+/* 4. Darker linear gradient navy blue for Sad */
 .sad {
-  background: linear-gradient(to right, #1b3a69, #2c4b8e);
+  background: linear-gradient(135deg, #000080, #000040);
 }
 
+/* 2. Darker linear gradient red for Angry */
 .angry {
-  background: linear-gradient(to right, #ff7e7e, #ff0000);
+  background: linear-gradient(135deg, #550000, #800000);
 }
-
+/* 5. Darker linear gradient orange for Anxiety */
 .anxiety {
-  background: linear-gradient(to right, #f39c12, #ff8c00);
+  background: linear-gradient(135deg, #993d00, #cc6600);
 }
 
+/* 3. Darker linear gradient purple for Depressed */
 .depressed {
-  background: linear-gradient(to right, #483D8B, #6A5ACD);
+  background: linear-gradient(135deg, #1F0033, #420045);
 }
 
 .lonely {
