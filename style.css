@@ -18,6 +18,7 @@ body {
 header {
   width: 100%;              /* Ensure header spans the full width */
   text-align: center;
+  margin-top: 3rem; /* Added margin to move the header down */
   padding: 2rem 1rem;
   height: 8rem;
   background: white;        /* Solid white background */
