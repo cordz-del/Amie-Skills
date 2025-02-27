@@ -1,146 +1,118 @@
-/* Basic resets */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #fafafa;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
 /* Header Styling */
-header {
-    width: 100%;              
-    text-align: center;
-    margin-top: 3rem;
-    padding: 2rem 1rem;
-    height: 8rem;
-    background: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: black;
-    position: relative;
+.main-header {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem 2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
 }
 
-header h1 {
-    font-size: 8rem;
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.logo h1 {
+    font-size: 2.5rem;
     background: linear-gradient(45deg, #0056b3, #89cfff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 0.5rem;
+    margin: 0;
 }
 
-header .description {
-    font-size: 1.2rem;
+.logo .description {
+    font-size: 0.9rem;
     color: #001f3f;
+    margin-top: -5px;
 }
 
-/* Main section */
-main {
-    flex: 1;
-    padding: 2rem 1rem;
+.nav-links {
     display: flex;
-    justify-content: center;
+    gap: 2rem;
     align-items: center;
 }
 
-/* Emotion boxes layout */
-.emotion-section {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    max-width: 1000px;
-    margin: 0 auto;
-    width: 100%;
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
 }
 
-@media (min-width: 600px) {
-    .emotion-section {
-        grid-template-columns: 1fr 1fr;
-    }
+.nav-links a:hover {
+    background-color: #f0f0f0;
 }
 
-.emotion-box {
-    padding: 1.5rem;
-    border-radius: 8px;
-    color: #fff;
-    text-align: center;
-    min-height: 120px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    cursor: pointer;
-    border: none;
-    width: 100%;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+.nav-links a.active {
+    color: #0056b3;
+    background-color: #e6f0ff;
 }
 
-.emotion-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+/* Update main padding to account for fixed header */
+main {
+    padding-top: 7rem;
 }
 
-.emotion-box h2 {
-    margin-bottom: 0.5rem;
-    font-size: 1.5rem;
-}
-
-.emotion-box p {
-    font-size: 1rem;
-    opacity: 0.9;
-}
-
-/* Emotion box gradients - Even lighter versions */
-.stressed {
-    background: linear-gradient(135deg, #6E3A80, #9A40A7);
-    box-shadow: 0 4px 15px rgba(46, 0, 64, 0.3);
-}
-
-.sad {
-    background: linear-gradient(135deg, #3a3ab9, #4040a0);
-    box-shadow: 0 4px 15px rgba(0, 0, 128, 0.3);
-}
-
-.angry {
-    background: linear-gradient(135deg, #954646, #b95353);
-    box-shadow: 0 4px 15px rgba(85, 0, 0, 0.3);
-}
-
-.anxiety {
-    background: linear-gradient(135deg, #d37c46, #ec9a53);
-    box-shadow: 0 4px 15px rgba(153, 61, 0, 0.3);
-}
-
-.depressed {
-    background: linear-gradient(135deg, #5F3A73, #824685);
-    box-shadow: 0 4px 15px rgba(31, 0, 51, 0.3);
-}
-
-.lonely {
-    background: linear-gradient(to right, #8a8a8a, #a4a4a4);
-    box-shadow: 0 4px 15px rgba(79, 79, 79, 0.3);
-}
-/* Footer */
+/* Footer Styling */
 footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
     text-align: center;
     padding: 1rem;
     background-color: #f8f8f8;
     border-top: 1px solid #ddd;
+    position: relative; /* Change from fixed to relative */
 }
 
 footer p {
     font-size: 0.9rem;
     color: #666;
+}
+
+.footer-links {
+    margin-top: 0.5rem;
+}
+
+.footer-links a {
+    color: #666;
+    text-decoration: none;
+    margin: 0 1rem;
+}
+
+.footer-links a:hover {
+    color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .logo {
+        align-items: center;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    main {
+        padding-top: 9rem;
+    }
 }
