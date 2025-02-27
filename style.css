@@ -9,6 +9,9 @@ body {
   font-family: Arial, sans-serif;
   background-color: #fafafa;
   color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* Header styling */
@@ -31,16 +34,26 @@ header p {
 
 /* Main section */
 main {
+  flex: 1; /* Ensures main content expands to push footer down */
   padding: 2rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Emotion boxes layout */
 .emotion-section {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: 1fr; /* Default to 1 column for small screens */
   gap: 1rem;
   max-width: 1000px;
   margin: 0 auto;
+}
+
+@media (min-width: 600px) { /* Two columns for medium and larger screens */
+  .emotion-section {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .emotion-box {
@@ -54,18 +67,13 @@ main {
   justify-content: center;
 }
 
-.emotion-box h2 {
-  margin-bottom: 0.5rem;
-  font-size: 1.5rem;
-}
-
-/* Example colors for each emotion */
+/* Emotion colors */
 .stressed {
   background-color: #9b59b6; /* Purple */
 }
 
 .sad {
-  background-color: #3498db; /* Blue */
+  background-color: #1b3a69; /* Dark Navy Blue */
 }
 
 .angry {
@@ -81,16 +89,19 @@ main {
 }
 
 .lonely {
-  background-color: #95a5a6; /* Gray */
+  background-color: #4f4f4f; /* Darker Gray */
 }
 
 /* Footer */
 footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   text-align: center;
   padding: 1rem;
   background-color: #f8f8f8;
   border-top: 1px solid #ddd;
-  margin-top: 2rem;
 }
 
 footer p {
