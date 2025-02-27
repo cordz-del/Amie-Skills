@@ -16,34 +16,35 @@ body {
 
 /* Header Styling */
 header {
+  width: 100%;              /* Ensure header spans the full width */
   text-align: center;
-  padding: 2rem 1rem 1rem;
+  padding: 2rem 1rem;
   height: 8rem;
-  background: white; /* Changed from linear gradient */
+  background: white;        /* Solid white background */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: black; /* Updated for contrast on a white background */
+  color: black;
+  position: relative;       /* Adjust if needed (or remove if not required) */
 }
 
-
-.header h1 {
-  font-size: 8rem;
+header h1 {
+  font-size: 8rem;  /* Adjust the font size if 8rem is too large for your design */
   background: linear-gradient(45deg, #001f3f, #00509e);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 0.5rem;
 }
 
-.header .description {
+header .description {
   font-size: 1.2rem;
   color: #001f3f;
 }
 
 /* Main section */
 main {
-  flex: 1; /* Ensures main content expands to push footer down */
+  flex: 1; /* Allows main content to expand and push footer down */
   padding: 2rem 1rem;
   display: flex;
   justify-content: center;
@@ -53,7 +54,7 @@ main {
 /* Emotion boxes layout */
 .emotion-section {
   display: grid;
-  grid-template-columns: 1fr; /* Default to 1 column for small screens */
+  grid-template-columns: 1fr; /* Default single column for small screens */
   gap: 1rem;
   max-width: 1000px;
   margin: 0 auto;
@@ -78,27 +79,27 @@ main {
 
 /* Emotion-Specific Buttons with Linear Gradients */
 .stressed {
-  background: linear-gradient(to right, #9b59b6, #8e44ad); /* Purple Gradient */
+  background: linear-gradient(to right, #9b59b6, #8e44ad);
 }
 
 .sad {
-  background: linear-gradient(to right, #1b3a69, #2c4b8e); /* Dark Navy Blue Gradient */
+  background: linear-gradient(to right, #1b3a69, #2c4b8e);
 }
 
 .angry {
-  background: linear-gradient(to right, #ff7e7e, #ff0000); /* Red Gradient */
+  background: linear-gradient(to right, #ff7e7e, #ff0000);
 }
 
 .anxiety {
-  background: linear-gradient(to right, #f39c12, #ff8c00); /* Orange Gradient */
+  background: linear-gradient(to right, #f39c12, #ff8c00);
 }
 
 .depressed {
-  background: linear-gradient(to right, #483D8B, #6A5ACD); /* Dark Purple Gradient */
+  background: linear-gradient(to right, #483D8B, #6A5ACD);
 }
 
 .lonely {
-  background: linear-gradient(to right, #4f4f4f, #696969); /* Darker Gray Gradient */
+  background: linear-gradient(to right, #4f4f4f, #696969);
 }
 
 /* Buttons Grid */
@@ -122,7 +123,6 @@ button {
   transition: transform 0.2s ease-in-out;
 }
 
-/* Button Hover Effect */
 button:hover {
   transform: scale(1.05);
 }
