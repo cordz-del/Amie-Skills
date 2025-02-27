@@ -16,22 +16,22 @@ body {
 
 /* Header Styling */
 header {
-  width: 100%;              /* Ensure header spans the full width */
+  width: 100%;              
   text-align: center;
-  margin-top: 3rem; /* Added margin to move the header down */
+  margin-top: 3rem;
   padding: 2rem 1rem;
   height: 8rem;
-  background: white;        /* Solid white background */
+  background: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: black;
-  position: relative;       /* Adjust if needed (or remove if not required) */
+  position: relative;
 }
 
 header h1 {
-  font-size: 8rem;  /* Adjust the font size if 8rem is too large for your design */
+  font-size: 8rem;
   background: linear-gradient(45deg, #001f3f, #00509e);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -45,7 +45,7 @@ header .description {
 
 /* Main section */
 main {
-  flex: 1; /* Allows main content to expand and push footer down */
+  flex: 1;
   padding: 2rem 1rem;
   display: flex;
   justify-content: center;
@@ -55,13 +55,13 @@ main {
 /* Emotion boxes layout */
 .emotion-section {
   display: grid;
-  grid-template-columns: 1fr; /* Default single column for small screens */
+  grid-template-columns: 1fr;
   gap: 1rem;
   max-width: 1000px;
   margin: 0 auto;
 }
 
-@media (min-width: 600px) { /* Two columns for medium and larger screens */
+@media (min-width: 600px) {
   .emotion-section {
     grid-template-columns: 1fr 1fr;
   }
@@ -78,9 +78,11 @@ main {
   justify-content: center;
 }
 
-/* 1. Darker linear gradient purple for Stress */
-.stress {
+/* 1. Darker linear gradient purple for Stressed */
+/* Note: Changed .stress to .stressed to match HTML */
+.stressed {
   background: linear-gradient(135deg, #2E0040, #580067);
+}  /* <-- Added missing closing brace */
 
 /* 4. Darker linear gradient navy blue for Sad */
 .sad {
@@ -91,6 +93,7 @@ main {
 .angry {
   background: linear-gradient(135deg, #550000, #800000);
 }
+
 /* 5. Darker linear gradient orange for Anxiety */
 .anxiety {
   background: linear-gradient(135deg, #993d00, #cc6600);
