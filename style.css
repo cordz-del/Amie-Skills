@@ -1,3 +1,19 @@
+/* Basic Resets */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fafafa;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 /* Header Styling */
 .main-header {
     background-color: #ffffff;
@@ -65,20 +81,22 @@
 /* Update main padding to account for fixed header */
 main {
     padding-top: 7rem;
+    flex: 1; /* Ensures main content takes available space */
 }
 
 /* Footer Styling */
 footer {
     text-align: center;
-    padding: 1rem;
+    padding: 1.5rem;
     background-color: #f8f8f8;
     border-top: 1px solid #ddd;
-    position: relative; /* Change from fixed to relative */
+    margin-top: auto; /* Ensures footer stays at bottom */
 }
 
 footer p {
     font-size: 0.9rem;
     color: #666;
+    margin-bottom: 0.5rem;
 }
 
 .footer-links {
@@ -89,6 +107,7 @@ footer p {
     color: #666;
     text-decoration: none;
     margin: 0 1rem;
+    transition: color 0.3s ease;
 }
 
 .footer-links a:hover {
