@@ -1,39 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Amie - Emotional &amp; Mental Health Assistant</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amie - Emotional & Mental Health Assistant</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
 <body>
+    <!-- Header -->
     <header class="main-header">
         <nav class="nav-container">
             <div class="logo">
-                <h1>Amie</h1>
-                <p class="description">Emotional &amp; Mental Health Assistant</p>
+                <img src="images/amie-logo.png" alt="Amie Logo">
+                <div class="logo-text">
+                    <h1>Amie</h1>
+                    <p class="description">Emotional & Mental Health Assistant</p>
+                </div>
             </div>
             <div class="nav-links">
-                <a href="#" class="active">Home</a>
-                <a href="#">About</a>
-                <a href="#">Services</a>
-                <a href="#">Contact</a>
+                <a href="index.html" class="active">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="contact.html">Contact</a>
+                <a href="login.html" class="login-btn">Login</a>
+                <a href="signup.html" class="signup-btn">Sign Up</a>
             </div>
         </nav>
     </header>
 
     <main>
         <section class="emotion-section">
-            <!-- Existing emotion boxes remain the same -->
+            <h2>How are you feeling today?</h2>
+            <div class="emotion-grid">
+                <div class="emotion-box">
+                    <img src="images/happy.svg" alt="Happy emotion" />
+                    <h3>Happy</h3>
+                    <p>Feeling joyful and content</p>
+                </div>
+                <div class="emotion-box">
+                    <img src="images/sad.svg" alt="Sad emotion" />
+                    <h3>Sad</h3>
+                    <p>Feeling down or blue</p>
+                </div>
+                <div class="emotion-box">
+                    <img src="images/anxious.svg" alt="Anxious emotion" />
+                    <h3>Anxious</h3>
+                    <p>Feeling worried or stressed</p>
+                </div>
+                <div class="emotion-box">
+                    <img src="images/angry.svg" alt="Angry emotion" />
+                    <h3>Angry</h3>
+                    <p>Feeling frustrated or upset</p>
+                </div>
+                <div class="emotion-box">
+                    <img src="images/tired.svg" alt="Tired emotion" />
+                    <h3>Tired</h3>
+                    <p>Feeling exhausted or drained</p>
+                </div>
+                <div class="emotion-box">
+                    <img src="images/neutral.svg" alt="Neutral emotion" />
+                    <h3>Neutral</h3>
+                    <p>Feeling balanced or calm</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="skills-section">
+            <h2>Emotional Skills & Resources</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Meditation</h3>
+                    <p>Learn mindfulness techniques for emotional balance</p>
+                    <button class="skill-btn">Start Practice</button>
+                </div>
+                <div class="skill-card">
+                    <h3>Breathing Exercises</h3>
+                    <p>Simple breathing techniques for stress relief</p>
+                    <button class="skill-btn">Begin Exercise</button>
+                </div>
+                <div class="skill-card">
+                    <h3>Journaling</h3>
+                    <p>Express your thoughts and feelings through writing</p>
+                    <button class="skill-btn">Open Journal</button>
+                </div>
+                <div class="skill-card">
+                    <h3>Mood Tracking</h3>
+                    <p>Monitor and understand your emotional patterns</p>
+                    <button class="skill-btn">Track Mood</button>
+                </div>
+            </div>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2025 Amie. All rights reserved.</p>
-        <div class="footer-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-            <a href="#">Support</a>
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Amie</h3>
+                <p>Your trusted emotional and mental health companion, available 24/7.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="support.html">Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <a href="#" class="social-icon"><img src="images/facebook.svg" alt="Facebook"></a>
+                    <a href="#" class="social-icon"><img src="images/twitter.svg" alt="Twitter"></a>
+                    <a href="#" class="social-icon"><img src="images/instagram.svg" alt="Instagram"></a>
+                    <a href="#" class="social-icon"><img src="images/linkedin.svg" alt="LinkedIn"></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Amie. All rights reserved.</p>
         </div>
     </footer>
 </body>
