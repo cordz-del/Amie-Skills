@@ -98,37 +98,36 @@ main {
     opacity: 0.9;
 }
 
-/* Emotion box gradients */
+/* Emotion box gradients - Lighter versions */
 .stressed {
-    background: linear-gradient(135deg, #2E0040, #580067);
+    background: linear-gradient(135deg, #4E1A60, #7A2087);
     box-shadow: 0 4px 15px rgba(46, 0, 64, 0.3);
 }
 
 .sad {
-    background: linear-gradient(135deg, #000080, #000040);
+    background: linear-gradient(135deg, #1a1a99, #202080);
     box-shadow: 0 4px 15px rgba(0, 0, 128, 0.3);
 }
 
 .angry {
-    background: linear-gradient(135deg, #550000, #800000);
+    background: linear-gradient(135deg, #752626, #993333);
     box-shadow: 0 4px 15px rgba(85, 0, 0, 0.3);
 }
 
 .anxiety {
-    background: linear-gradient(135deg, #993d00, #cc6600);
+    background: linear-gradient(135deg, #b35c26, #cc7a33);
     box-shadow: 0 4px 15px rgba(153, 61, 0, 0.3);
 }
 
 .depressed {
-    background: linear-gradient(135deg, #1F0033, #420045);
+    background: linear-gradient(135deg, #3F1A53, #622665);
     box-shadow: 0 4px 15px rgba(31, 0, 51, 0.3);
 }
 
 .lonely {
-    background: linear-gradient(to right, #4f4f4f, #696969);
+    background: linear-gradient(to right, #6a6a6a, #848484);
     box-shadow: 0 4px 15px rgba(79, 79, 79, 0.3);
 }
-
 /* Footer */
 footer {
     position: fixed;
