@@ -14,32 +14,25 @@ body {
   min-height: 100vh;
 }
 
-/* Header Styling */
-header {
+/* Header styling */
+.header {
+  width: 100%;
   text-align: center;
-  padding: 2rem 1rem 1rem;
-  height: 8rem;
-  background: white; /* Changed from linear gradient */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: black; /* Updated for contrast on a white background */
+  padding: 2rem 0;
+  background-color: #e6e6e6;
 }
 
-
-
-header h1 {
+.header h1 {
   font-size: 8rem;
-  background: linear-gradient(to right, #00008B, #1E90FF);
+  background: linear-gradient(45deg, #001f3f, #00509e);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
 }
 
-
-header p {
+.header .description {
   font-size: 1.2rem;
-  color: white;
+  color: #001f3f;
 }
 
 /* Main section */
