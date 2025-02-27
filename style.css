@@ -14,22 +14,29 @@ body {
   min-height: 100vh;
 }
 
-/* Header styling */
+/* Header Styling */
 header {
   text-align: center;
   padding: 2rem 1rem 1rem;
-  background-color: #f8f8f8;
-  border-bottom: 1px solid #ddd;
+  height: 8rem;
+  background: linear-gradient(to right, #0056b3, #89cfff);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
 }
 
 header h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
+  font-size: 4rem;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background: linear-gradient(to right, #ffffff, #d1e8ff);
 }
 
 header p {
   font-size: 1.2rem;
-  color: #666;
+  color: white;
 }
 
 /* Main section */
@@ -67,29 +74,55 @@ main {
   justify-content: center;
 }
 
-/* Emotion colors */
+/* Emotion-Specific Buttons with Linear Gradients */
 .stressed {
-  background-color: #9b59b6; /* Purple */
+  background: linear-gradient(to right, #9b59b6, #8e44ad); /* Purple Gradient */
 }
 
 .sad {
-  background-color: #1b3a69; /* Dark Navy Blue */
+  background: linear-gradient(to right, #1b3a69, #2c4b8e); /* Dark Navy Blue Gradient */
 }
 
 .angry {
-  background-color: #e74c3c; /* Red */
+  background: linear-gradient(to right, #ff7e7e, #ff0000); /* Red Gradient */
 }
 
 .anxiety {
-  background-color: #f39c12; /* Orange */
+  background: linear-gradient(to right, #f39c12, #ff8c00); /* Orange Gradient */
 }
 
 .depressed {
-  background-color: #8e44ad; /* Dark Purple */
+  background: linear-gradient(to right, #483D8B, #6A5ACD); /* Dark Purple Gradient */
 }
 
 .lonely {
-  background-color: #4f4f4f; /* Darker Gray */
+  background: linear-gradient(to right, #4f4f4f, #696969); /* Darker Gray Gradient */
+}
+
+/* Buttons Grid */
+.buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Button Styling */
+button {
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Button Hover Effect */
+button:hover {
+  transform: scale(1.05);
 }
 
 /* Footer */
