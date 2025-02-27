@@ -28,11 +28,12 @@ header {
 }
 
 header h1 {
-  font-size: 4rem;
+  font-size: 8rem;
+  background: linear-gradient(to right, #00008B, #1E90FF);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background: linear-gradient(to right, #ffffff, #d1e8ff);
 }
+
 
 header p {
   font-size: 1.2rem;
