@@ -1,175 +1,362 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Amie - Emotional & Mental Health Assistant</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
-  <style>
-    /* Mood Button Animations */
-    .flip-animation {
-      animation: flip 1s forwards;
+/* Basic Resets */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fafafa;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header Styling */
+.main-header {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem 2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo img {
+    height: 50px;
+    width: auto;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo h1 {
+    font-size: 2.5rem;
+    background: linear-gradient(45deg, #0056b3, #89cfff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+}
+
+.logo .description {
+    font-size: 0.9rem;
+    color: #001f3f;
+    margin-top: -5px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+    background-color: #f0f0f0;
+}
+
+.nav-links a.active {
+    color: #0056b3;
+    background-color: #e6f0ff;
+}
+
+.login-btn, .signup-btn {
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.login-btn {
+    border: 2px solid #0056b3;
+    color: #0056b3;
+    background: transparent;
+}
+
+.login-btn:hover {
+    background-color: #0056b3;
+    color: white;
+}
+
+.signup-btn {
+    background-color: #0056b3;
+    color: white;
+    border: 2px solid #0056b3;
+}
+
+.signup-btn:hover {
+    background-color: #003d82;
+    border-color: #003d82;
+}
+
+/* Main Content */
+main {
+    padding-top: 7rem;
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+/* Emotion Section Styling */
+.emotion-section {
+    padding: 2rem;
+    text-align: center;
+}
+
+.emotion-section h2 {
+    margin-bottom: 2rem;
+    color: #333;
+    font-size: 2rem;
+}
+
+.emotion-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+.emotion-box {
+    flex: 1 1 calc(33.333% - 1.5rem);
+    min-width: 250px;
+    color: #fff;
+    padding: 2rem 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.emotion-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.emotion-box h3 {
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+}
+
+.emotion-box p {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Emotion Colors */
+.stressed { background-color: #9F58B0; }
+.sad { background-color: #8C9EFF; }
+.angry { background-color: #FF5A5F; }
+.anxiety { background-color: #FFA500; }
+.depressed { background-color: #4C4CFF; }
+.lonely { background-color: #999999; }
+
+/* Skills Section Styling */
+.skills-section {
+    padding: 3rem 0;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.skill-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.skill-btn {
+    margin-top: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 600;
+}
+
+.skill-btn:hover {
+    background-color: #003d82;
+}
+
+/* Footer Styling */
+.main-footer {
+    background-color: #f8f8f8;
+    padding: 4rem 2rem 1rem;
+    margin-top: auto;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+}
+
+.footer-section h3 {
+    color: #333;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-section a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.footer-section a:hover {
+    color: #0056b3;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.social-icon {
+    transition: transform 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: translateY(-3px);
+}
+
+.social-icon img {
+    width: 24px;
+    height: 24px;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #ddd;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .nav-container {
+        padding: 0 1rem;
     }
-    @keyframes flip {
-      from { transform: rotateY(0deg); }
-      to { transform: rotateY(180deg); }
+    
+    .logo h1 {
+        font-size: 2rem;
     }
-    .spin-animation {
-      animation: spin 1s forwards;
+}
+
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 1rem;
     }
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+
+    .logo {
+        align-items: center;
     }
-  </style>
-</head>
-<body>
-  <!-- Header -->
-  <header class="main-header">
-    <nav class="nav-container">
-      <div class="logo">
-        <img src="images/amie-logo.png" alt="Amie Logo" />
-        <div class="logo-text">
-          <h1>Amie</h1>
-          <p class="description">Emotional & Mental Health Assistant</p>
-        </div>
-      </div>
-      <div class="nav-links">
-        <a href="index.html" class="active">Home</a>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="contact.html">Contact</a>
-        <a href="login.html" class="login-btn">Login</a>
-        <a href="signup.html" class="signup-btn">Sign Up</a>
-      </div>
-    </nav>
-  </header>
 
-  <main>
-    <section class="emotion-section">
-      <h2>How are you feeling today?</h2>
-      <div class="emotion-grid">
-        <div class="emotion-box stressed" onclick="handleMoodClick(this)">
-          <h3>Stressed</h3>
-          <p>A state of mental or emotional strain or tension</p>
-        </div>
-
-        <div class="emotion-box sad" onclick="handleMoodClick(this)">
-          <h3>Sad</h3>
-          <p>A feeling of sorrow or unhappiness.</p>
-        </div>
-
-        <div class="emotion-box angry" onclick="handleMoodClick(this)">
-          <h3>Angry</h3>
-          <p>A strong feeling of displeasure or hostility</p>
-        </div>
-
-        <div class="emotion-box anxiety" onclick="handleMoodClick(this)">
-          <h3>Anxiety</h3>
-          <p>A feeling of worry or apprehension.</p>
-        </div>
-
-        <div class="emotion-box depressed" onclick="handleMoodClick(this)">
-          <h3>Depressed</h3>
-          <p>A mood matched by deep sadness and low energy</p>
-        </div>
-
-        <div class="emotion-box lonely" onclick="handleMoodClick(this)">
-          <h3>Lonely</h3>
-          <p>A sense of isolation or solitude.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="skills-section">
-      <h2>Emotional Skills & Resources</h2>
-      <div class="skills-grid">
-        <div class="skill-card">
-          <h3>Meditation</h3>
-          <p>Learn mindfulness techniques for emotional balance</p>
-          <button class="skill-btn">Start Practice</button>
-        </div>
-        <div class="skill-card">
-          <h3>Breathing Exercises</h3>
-          <p>Simple breathing techniques for stress relief</p>
-          <button class="skill-btn">Begin Exercise</button>
-        </div>
-        <div class="skill-card">
-          <h3>Journaling</h3>
-          <p>Express your thoughts and feelings through writing</p>
-          <button class="skill-btn">Open Journal</button>
-        </div>
-        <div class="skill-card">
-          <h3>Mood Tracking</h3>
-          <p>Monitor and understand your emotional patterns</p>
-          <button class="skill-btn" onclick="window.open('https://cordz-del.github.io/Mood-Record-Page/', '_blank')">Track Mood</button>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="main-footer">
-    <div class="footer-content">
-      <div class="footer-section">
-        <h3>About Amie</h3>
-        <p>Your trusted emotional and mental health companion, available 24/7.</p>
-      </div>
-      <div class="footer-section">
-        <h3>Quick Links</h3>
-        <ul>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="blog.html">Blog</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h3>Legal</h3>
-        <ul>
-          <li><a href="privacy.html">Privacy Policy</a></li>
-          <li><a href="terms.html">Terms of Service</a></li>
-          <li><a href="support.html">Support</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h3>Connect With Us</h3>
-        <div class="social-links">
-          <a href="#" class="social-icon"><img src="images/facebook.svg" alt="Facebook" /></a>
-          <a href="#" class="social-icon"><img src="images/twitter.svg" alt="Twitter" /></a>
-          <a href="#" class="social-icon"><img src="images/instagram.svg" alt="Instagram" /></a>
-          <a href="#" class="social-icon"><img src="images/linkedin.svg" alt="LinkedIn" /></a>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2025 Amie. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <script>
-    let useFlip = true;
-
-    function handleMoodClick(elem) {
-      const moodTitle = elem.querySelector("h3").innerText;
-      
-      if (useFlip) {
-        elem.classList.add("flip-animation");
-        elem.classList.remove("spin-animation");
-      } else {
-        elem.classList.add("spin-animation");
-        elem.classList.remove("flip-animation");
-      }
-      
-      useFlip = !useFlip;
-      
-      setTimeout(() => {
-        elem.innerHTML = `<h3>${moodTitle}</h3>
-                         <p>I am sorry you are ${moodTitle.toLowerCase()} that way. Would you like to vent about it with Amie?</p>`;
-        elem.classList.remove("flip-animation", "spin-animation");
-      }, 1000);
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.75rem;
     }
-  </script>
-</body>
-</html>
+
+    main {
+        padding-top: 9rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .emotion-box {
+        flex: 1 1 calc(50% - 1.5rem);
+    }
+    
+    .emotion-section {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo h1 {
+        font-size: 1.75rem;
+    }
+    
+    .emotion-box {
+        flex: 1 1 100%;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .nav-links a {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    .login-btn, .signup-btn {
+        padding: 0.4rem 1.2rem;
+    }
+}
