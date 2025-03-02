@@ -4,8 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Amie - Emotional & Mental Health Assistant</title>
+  <!-- Link your updated stylesheet here -->
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+
+  <!-- Inline style for mood animations (optional) -->
   <style>
     /* Mood Button Animations */
     .flip-animation {
@@ -15,6 +18,7 @@
       from { transform: rotateY(0deg); }
       to { transform: rotateY(180deg); }
     }
+
     .spin-animation {
       animation: spin 1s forwards;
     }
@@ -25,10 +29,11 @@
   </style>
 </head>
 <body>
-  <!-- Header -->
+  <!-- Header (matching Log-In-Amie style) -->
   <header class="main-header">
     <nav class="nav-container">
       <div class="logo">
+        <!-- If you want to keep the Amie logo image, leave this in -->
         <img src="images/amie-logo.png" alt="Amie Logo" />
         <div class="logo-text">
           <h1>Amie</h1>
@@ -46,6 +51,7 @@
     </nav>
   </header>
 
+  <!-- Main Content -->
   <main>
     <section class="emotion-section">
       <h2>How are you feeling today?</h2>
@@ -109,7 +115,7 @@
     </section>
   </main>
 
-  <!-- Footer -->
+  <!-- Footer (matching Log-In-Amie style, but keeping your content) -->
   <footer class="main-footer">
     <div class="footer-content">
       <div class="footer-section">
@@ -148,6 +154,7 @@
     </div>
   </footer>
 
+  <!-- Mood Button Click Script -->
   <script>
     let useFlip = true;
 
@@ -165,8 +172,8 @@
       useFlip = !useFlip;
       
       setTimeout(() => {
-        elem.innerHTML = `<h3>${moodTitle}</h3>
-                         <p>I am sorry you are ${moodTitle.toLowerCase()} that way. Would you like to vent about it with Amie?</p>`;
+        elem.innerHTML = \`<h3>\${moodTitle}</h3>
+          <p>I am sorry you are \${moodTitle.toLowerCase()} that way. Would you like to vent about it with Amie?</p>\`;
         elem.classList.remove("flip-animation", "spin-animation");
       }, 1000);
     }
