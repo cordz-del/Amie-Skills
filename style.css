@@ -37,18 +37,8 @@ body {
 
 .logo {
   display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.logo img {
-  height: 50px;
-  width: auto;
-}
-
-.logo-text {
-  display: flex;
   flex-direction: column;
+  align-items: flex-start;
 }
 
 .logo h1 {
@@ -66,7 +56,7 @@ body {
   margin-top: -5px;
 }
 
-/* (Navigation links and login/signup buttons removed as per requirement) */
+/* (Navigation links removed as per requirement) */
 
 /* Main Content */
 main {
@@ -122,13 +112,25 @@ main {
   line-height: 1.6;
 }
 
-/* Emotion Colors */
-.stressed   { background-color: #9F58B0; }
-.sad        { background-color: #002366; } /* Changed to dark blue */
-.angry      { background-color: #FF5A5F; }
-.anxiety    { background-color: #FFA500; }
-.depressed  { background: linear-gradient(45deg, navy, purple); } /* Navy blue with purple gradient */
-.lonely     { background-color: #999999; }
+/* Toned-down Emotion Colors */
+.stressed {
+  background-color: #9F58B0;
+}
+.sad {
+  background-color: #64748B; /* Muted blue-gray */
+}
+.angry {
+  background-color: #FF5A5F;
+}
+.anxiety {
+  background-color: #FFA500;
+}
+.depressed {
+  background: linear-gradient(45deg, #3B4252, #4C566A); /* Muted navy-gray gradient */
+}
+.lonely {
+  background-color: #999999;
+}
 
 /* Skills Section */
 .skills-section {
@@ -141,26 +143,40 @@ main {
   margin-top: 2rem;
 }
 .skill-card {
+  position: relative;
   background: white;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .skill-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
+.skill-card::after {
+  content: '';
+  position: absolute;
+  width: 95%;
+  height: 100%;
+  background-color: #808080;
+  border-radius: 15px;
+  top: 10px;
+  left: -10px;
+  z-index: -1;
+  opacity: 0.3;
+}
 .skill-btn {
   margin-top: 1.5rem;
-  padding: 0.75rem 1.5rem;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
   background-color: #0056b3;
   color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
   transition: background-color 0.3s ease;
-  font-weight: 600;
 }
 .skill-btn:hover {
   background-color: #003d82;
@@ -208,20 +224,9 @@ main {
 .footer-section a:hover {
   color: #0056b3;
 }
-.social-links {
-  display: flex;
-  gap: 1.5rem;
-}
-.social-icon {
-  transition: transform 0.3s ease;
-}
-.social-icon:hover {
-  transform: translateY(-3px);
-}
-.social-icon img {
-  width: 24px;
-  height: 24px;
-}
+
+/* Removed social-links and social-icon styles as that section is removed from HTML */
+
 .footer-bottom {
   text-align: center;
   margin-top: 3rem;
