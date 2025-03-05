@@ -8,23 +8,65 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
 
-  <!-- Inline style for mood animations (optional) -->
+  <!-- Inline style for mood animations and modal styling -->
   <style>
     /* Mood Button Animations */
-    .flip-animation {
-      animation: flip 1s forwards;
-    }
-    @keyframes flip {
-      from { transform: rotateY(0deg); }
-      to { transform: rotateY(180deg); }
-    }
-
     .spin-animation {
       animation: spin 1s forwards;
     }
     @keyframes spin {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
+    }
+    /* Modal styling */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5);
+    }
+    .modal-content {
+      background-color: #fff;
+      margin: 15% auto;
+      padding: 2rem;
+      border-radius: 8px;
+      width: 80%;
+      max-width: 400px;
+      text-align: center;
+    }
+    .modal-content p {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+    .modal-button {
+      padding: 0.8rem 1.5rem;
+      margin: 0 0.5rem;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .modal-button:hover {
+      opacity: 0.9;
+    }
+    .modal-button.vent {
+      background-color: #0056b3;
+      color: #fff;
+    }
+    .modal-button.exercise {
+      background-color: #003d82;
+      color: #fff;
+    }
+    /* Green check mark styling */
+    .check-mark {
+      color: green;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
     }
   </style>
 </head>
@@ -44,7 +86,7 @@
   <!-- Main Content -->
   <main>
     <section class="emotion-section">
-      <h2>How are you feeling today?</h2>
+      <h2>Please choose based on the options below how you are feeling right now?</h2>
       <div class="emotion-grid">
         <div class="emotion-box stressed" onclick="handleMoodClick(this)">
           <h3>Stressed</h3>
@@ -99,16 +141,20 @@
         <div class="skill-card">
           <h3>Mood Tracking</h3>
           <p>Monitor and understand your emotional patterns</p>
-          <button
-            class="skill-btn"
-            onclick="window.open('https://cordz-del.github.io/Mood-Record-Page/', '_blank')"
-          >
-            Track Mood
-          </button>
+          <button class="skill-btn" onclick="window.open('https://cordz-del.github.io/Mood-Record-Page/', '_blank')">Track Mood</button>
         </div>
       </div>
     </section>
   </main>
+
+  <!-- Modal for Vent/Exercise Choice -->
+  <div id="actionModal" class="modal">
+    <div class="modal-content">
+      <p>Please choose below: Vent about your mood or proceed to an exercise tailored to your feeling.</p>
+      <button class="modal-button vent" onclick="chooseAction('vent')">Vent</button>
+      <button class="modal-button exercise" onclick="chooseAction('exercise')">Exercise</button>
+    </div>
+  </div>
 
   <!-- Footer (matching Log-In-Amie style) -->
   <footer class="main-footer">
@@ -143,27 +189,42 @@
 
   <!-- Mood Button Click Script -->
   <script>
-    let useFlip = true;
-
-    function handleMoodClick(elem) {
-      const moodTitle = elem.querySelector("h3").innerText;
-
-      if (useFlip) {
-        elem.classList.add("flip-animation");
-        elem.classList.remove("spin-animation");
-      } else {
-        elem.classList.add("spin-animation");
-        elem.classList.remove("flip-animation");
-      }
-
-      useFlip = !useFlip;
-
-      setTimeout(() => {
-        elem.innerHTML = `<h3>${moodTitle}</h3>
-          <p>I am sorry you are ${moodTitle.toLowerCase()} that way. Would you like to vent about it with Amie?</p>`;
-        elem.classList.remove("flip-animation", "spin-animation");
-      }, 1000);
-    }
+    document.addEventListener('DOMContentLoaded', function() {
+      const emotionBoxes = document.querySelectorAll('.emotion-box');
+      let moodSelected = false;
+      
+      window.handleMoodClick = function(elem) {
+        if (moodSelected) return;
+        moodSelected = true;
+        
+        // Disable all other emotion boxes
+        emotionBoxes.forEach(box => {
+          if (box !== elem) {
+            box.classList.add('disabled');
+            box.style.pointerEvents = 'none';
+          }
+        });
+        
+        // Apply spin animation only
+        elem.classList.add('spin-animation');
+        
+        // After the spin animation, show a green check mark and confirmation message
+        setTimeout(() => {
+          elem.innerHTML = `<div class="check-mark">&#10003;</div>
+                            <p>Your feeling has been logged.</p>`;
+          // After a short delay, open the modal window
+          setTimeout(() => {
+            document.getElementById('actionModal').style.display = 'block';
+          }, 500);
+        }, 1000);
+      };
+      
+      window.chooseAction = function(action) {
+        console.log(`User chose to ${action}`);
+        // Hide the modal (further functionality can be added here)
+        document.getElementById('actionModal').style.display = 'none';
+      };
+    });
   </script>
 </body>
 </html>
