@@ -40,14 +40,7 @@
           <p class="description">Emotional & Mental Health Assistant</p>
         </div>
       </div>
-      <div class="nav-links">
-        <a href="index.html" class="active">Home</a>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="contact.html">Contact</a>
-        <a href="login.html" class="login-btn">Login</a>
-        <a href="signup.html" class="signup-btn">Sign Up</a>
-      </div>
+      <!-- Navigation links removed as per requirement -->
     </nav>
   </header>
 
@@ -94,17 +87,17 @@
         <div class="skill-card">
           <h3>Meditation</h3>
           <p>Learn mindfulness techniques for emotional balance</p>
-          <button class="skill-btn">Start Practice</button>
+          <button class="skill-btn disabled" disabled>Start Practice</button>
         </div>
         <div class="skill-card">
           <h3>Breathing Exercises</h3>
           <p>Simple breathing techniques for stress relief</p>
-          <button class="skill-btn">Begin Exercise</button>
+          <button class="skill-btn disabled" disabled>Begin Exercise</button>
         </div>
         <div class="skill-card">
           <h3>Journaling</h3>
           <p>Express your thoughts and feelings through writing</p>
-          <button class="skill-btn">Open Journal</button>
+          <button class="skill-btn disabled" disabled>Open Journal</button>
         </div>
         <div class="skill-card">
           <h3>Mood Tracking</h3>
@@ -115,7 +108,7 @@
     </section>
   </main>
 
-  <!-- Footer (matching Log-In-Amie style, but keeping your content) -->
+  <!-- Footer (matching Log-In-Amie style) -->
   <footer class="main-footer">
     <div class="footer-content">
       <div class="footer-section">
@@ -172,8 +165,8 @@
       useFlip = !useFlip;
       
       setTimeout(() => {
-        elem.innerHTML = \`<h3>\${moodTitle}</h3>
-          <p>I am sorry you are \${moodTitle.toLowerCase()} that way. Would you like to vent about it with Amie?</p>\`;
+        elem.innerHTML = `<h3>${moodTitle}</h3>
+          <p>I am sorry you are ${moodTitle.toLowerCase()} that way. Would you like to vent about it with Amie?</p>`;
         elem.classList.remove("flip-animation", "spin-animation");
       }, 1000);
     }
