@@ -66,81 +66,7 @@ body {
   margin-top: -5px;
 }
 
-.nav-links {
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
-}
-
-/* Navigation link styles */
-.nav-links a {
-  text-decoration: none;
-  color: #333;
-  font-weight: 500;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  transition: all 0.3s ease;
-}
-.nav-links a:hover {
-  background-color: #f0f0f0;
-}
-.nav-links a.active {
-  color: #0056b3;
-  background-color: #e6f0ff;
-}
-
-/* Login & Sign Up buttons (optional) */
-.login-btn, .signup-btn {
-  padding: 0.5rem 1.5rem;
-  border-radius: 25px;
-  font-weight: bold;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-.login-btn {
-  border: 2px solid #0056b3;
-  color: #0056b3;
-  background: transparent;
-}
-.login-btn:hover {
-  background-color: #0056b3;
-  color: white;
-}
-.signup-btn {
-  background-color: #0056b3;
-  color: white;
-  border: 2px solid #0056b3;
-}
-.signup-btn:hover {
-  background-color: #003d82;
-  border-color: #003d82;
-}
-
-/* Mobile nav toggle (hamburger) is initially hidden */
-.nav-toggle {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 10px;
-}
-.nav-toggle span {
-  display: block;
-  width: 25px;
-  height: 3px;
-  background-color: #333;
-  margin: 5px 0;
-  transition: 0.3s;
-}
-.nav-toggle.active span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-.nav-toggle.active span:nth-child(2) {
-  opacity: 0;
-}
-.nav-toggle.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(7px, -7px);
-}
+/* (Navigation links and login/signup buttons removed as per requirement) */
 
 /* Main Content */
 main {
@@ -198,10 +124,10 @@ main {
 
 /* Emotion Colors */
 .stressed   { background-color: #9F58B0; }
-.sad        { background-color: #8C9EFF; }
+.sad        { background-color: #002366; } /* Changed to dark blue */
 .angry      { background-color: #FF5A5F; }
 .anxiety    { background-color: #FFA500; }
-.depressed  { background-color: #4C4CFF; }
+.depressed  { background: linear-gradient(45deg, navy, purple); } /* Navy blue with purple gradient */
 .lonely     { background-color: #999999; }
 
 /* Skills Section */
@@ -238,6 +164,14 @@ main {
 }
 .skill-btn:hover {
   background-color: #003d82;
+}
+
+/* Disabled Button Style (for Meditation, Breathing Exercises, Journaling) */
+.disabled,
+.skill-btn.disabled {
+  background-color: #ccc !important;
+  color: #666 !important;
+  cursor: not-allowed;
 }
 
 /* Footer Styling (matching Log-In-Amie) */
@@ -315,11 +249,6 @@ main {
   .logo {
     align-items: center;
   }
-  .nav-links {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.75rem;
-  }
   main {
     padding-top: 9rem;
     padding-left: 1rem;
@@ -343,12 +272,5 @@ main {
   .footer-content {
     grid-template-columns: 1fr;
     gap: 2rem;
-  }
-  .nav-links a {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.9rem;
-  }
-  .login-btn, .signup-btn {
-    padding: 0.4rem 1.2rem;
   }
 }
