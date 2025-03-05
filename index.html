@@ -33,12 +33,9 @@
   <header class="main-header">
     <nav class="nav-container">
       <div class="logo">
-        <!-- If you want to keep the Amie logo image, leave this in -->
-        <img src="images/amie-logo.png" alt="Amie Logo" />
-        <div class="logo-text">
-          <h1>Amie</h1>
-          <p class="description">Emotional & Mental Health Assistant</p>
-        </div>
+        <!-- Text-based logo only, matching Log-In-Amie -->
+        <h1>Amie</h1>
+        <p class="description">Emotional & Mental Health Assistant</p>
       </div>
       <!-- Navigation links removed as per requirement -->
     </nav>
@@ -102,7 +99,12 @@
         <div class="skill-card">
           <h3>Mood Tracking</h3>
           <p>Monitor and understand your emotional patterns</p>
-          <button class="skill-btn" onclick="window.open('https://cordz-del.github.io/Mood-Record-Page/', '_blank')">Track Mood</button>
+          <button
+            class="skill-btn"
+            onclick="window.open('https://cordz-del.github.io/Mood-Record-Page/', '_blank')"
+          >
+            Track Mood
+          </button>
         </div>
       </div>
     </section>
@@ -132,15 +134,7 @@
           <li><a href="support.html">Support</a></li>
         </ul>
       </div>
-      <div class="footer-section">
-        <h3>Connect With Us</h3>
-        <div class="social-links">
-          <a href="#" class="social-icon"><img src="images/facebook.svg" alt="Facebook" /></a>
-          <a href="#" class="social-icon"><img src="images/twitter.svg" alt="Twitter" /></a>
-          <a href="#" class="social-icon"><img src="images/instagram.svg" alt="Instagram" /></a>
-          <a href="#" class="social-icon"><img src="images/linkedin.svg" alt="LinkedIn" /></a>
-        </div>
-      </div>
+      <!-- "Connect With Us" section removed as per requirement -->
     </div>
     <div class="footer-bottom">
       <p>&copy; 2025 Amie. All rights reserved.</p>
@@ -153,7 +147,7 @@
 
     function handleMoodClick(elem) {
       const moodTitle = elem.querySelector("h3").innerText;
-      
+
       if (useFlip) {
         elem.classList.add("flip-animation");
         elem.classList.remove("spin-animation");
@@ -161,9 +155,9 @@
         elem.classList.add("spin-animation");
         elem.classList.remove("flip-animation");
       }
-      
+
       useFlip = !useFlip;
-      
+
       setTimeout(() => {
         elem.innerHTML = `<h3>${moodTitle}</h3>
           <p>I am sorry you are ${moodTitle.toLowerCase()} that way. Would you like to vent about it with Amie?</p>`;
