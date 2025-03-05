@@ -117,7 +117,7 @@ main {
   background-color: #9F58B0;
 }
 .sad {
-  background-color: #64748B; /* Muted blue-gray */
+  background-color: #003d82; /* Toned-down dark blue */
 }
 .angry {
   background-color: #FF5A5F;
@@ -126,7 +126,7 @@ main {
   background-color: #FFA500;
 }
 .depressed {
-  background: linear-gradient(45deg, #3B4252, #4C566A); /* Muted navy-gray gradient */
+  background: linear-gradient(45deg, #002147, #3B4252); /* Toned-down navy-blue purplish gradient */
 }
 .lonely {
   background-color: #999999;
