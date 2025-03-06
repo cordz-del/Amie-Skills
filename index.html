@@ -18,6 +18,7 @@
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
+
     /* Modal styling */
     .modal {
       display: none; /* Hidden by default */
@@ -62,6 +63,7 @@
       background-color: #003d82;
       color: #fff;
     }
+
     /* Green check mark styling */
     .check-mark {
       color: green;
@@ -141,7 +143,9 @@
         <div class="skill-card">
           <h3>Mood Tracking</h3>
           <p>Monitor and understand your emotional patterns</p>
-          <button class="skill-btn" onclick="window.open('https://cordz-del.github.io/Mood-Record-Page/', '_blank')">Track Mood</button>
+          <button class="skill-btn" onclick="window.open('https://cordz-del.github.io/Mood-Record-Page/', '_blank')">
+            Track Mood
+          </button>
         </div>
       </div>
     </section>
@@ -193,10 +197,14 @@
       const emotionBoxes = document.querySelectorAll('.emotion-box');
       let moodSelected = false;
       
+      // Key in localStorage for shared data
+      const SHARED_MOOD_KEY = "sharedMoodData";
+
+      // Called when user clicks an emotion box
       window.handleMoodClick = function(elem) {
         if (moodSelected) return;
         moodSelected = true;
-        
+
         // Disable all other emotion boxes
         emotionBoxes.forEach(box => {
           if (box !== elem) {
@@ -205,24 +213,43 @@
           }
         });
         
-        // Apply spin animation only
+        // Apply spin animation
         elem.classList.add('spin-animation');
         
-        // After the spin animation, show a green check mark and confirmation message
+        // After spin animation completes (1s), log the mood and show check mark
         setTimeout(() => {
-          elem.innerHTML = `<div class="check-mark">&#10003;</div>
-                            <p>Your feeling has been logged.</p>`;
-          // After a short delay, open the modal window
+          // 1) Identify the mood from the second class (e.g. "stressed", "sad", etc.)
+          const moodName = elem.classList[1];
+
+          // 2) Save this mood to localStorage so that Mood-Record-Page can read it
+          const newMoodEntry = {
+            timestamp: new Date().toISOString(),
+            mood: moodName,
+            notes: "Logged from Amie-Skills"
+          };
+          let sharedData = JSON.parse(localStorage.getItem(SHARED_MOOD_KEY) || "[]");
+          sharedData.push(newMoodEntry);
+          localStorage.setItem(SHARED_MOOD_KEY, JSON.stringify(sharedData));
+
+          // 3) Replace box content with a check mark
+          elem.innerHTML = `
+            <div class="check-mark">&#10003;</div>
+            <p>Your feeling has been logged.</p>
+          `;
+
+          // 4) After a short delay, open the modal window
           setTimeout(() => {
             document.getElementById('actionModal').style.display = 'block';
           }, 500);
         }, 1000);
       };
       
+      // Called when user clicks Vent or Exercise in the modal
       window.chooseAction = function(action) {
         console.log(`User chose to ${action}`);
-        // Hide the modal (further functionality can be added here)
+        // Hide the modal
         document.getElementById('actionModal').style.display = 'none';
+        // Additional logic could go here (e.g., open a new page or show more text)
       };
     });
   </script>
