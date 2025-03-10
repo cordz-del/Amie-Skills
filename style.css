@@ -74,11 +74,13 @@ main {
   padding: 2rem;
   text-align: center;
 }
+
 .emotion-section h2 {
   margin-bottom: 2rem;
   color: #333;
   font-size: 2rem;
 }
+
 .emotion-grid {
   display: flex;
   flex-wrap: wrap;
@@ -86,6 +88,7 @@ main {
   justify-content: center;
   margin-top: 1.5rem;
 }
+
 .emotion-box {
   flex: 1 1 calc(33.333% - 1.5rem);
   min-width: 250px;
@@ -99,14 +102,17 @@ main {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
 .emotion-box:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
+
 .emotion-box h3 {
   margin-bottom: 1rem;
   font-size: 1.4rem;
 }
+
 .emotion-box p {
   font-size: 1rem;
   line-height: 1.6;
@@ -117,7 +123,7 @@ main {
   background-color: #9F58B0;
 }
 .sad {
-  background-color: #003d82; /* Toned-down dark blue */
+  background-color: #003d82;
 }
 .angry {
   background-color: #FF5A5F;
@@ -126,7 +132,7 @@ main {
   background-color: #FFA500;
 }
 .depressed {
-  background: linear-gradient(45deg, #002147, #3B4252); /* Toned-down navy-blue purplish gradient */
+  background: linear-gradient(45deg, #002147, #3B4252);
 }
 .lonely {
   background-color: #999999;
@@ -136,12 +142,14 @@ main {
 .skills-section {
   padding: 3rem 0;
 }
+
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
 }
+
 .skill-card {
   position: relative;
   background: white;
@@ -150,10 +158,12 @@ main {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .skill-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
+
 .skill-card::after {
   content: '';
   position: absolute;
@@ -166,6 +176,7 @@ main {
   z-index: -1;
   opacity: 0.3;
 }
+
 .skill-btn {
   margin-top: 1.5rem;
   padding: 0.9rem;
@@ -178,6 +189,7 @@ main {
   color: white;
   transition: background-color 0.3s ease;
 }
+
 .skill-btn:hover {
   background-color: #003d82;
 }
@@ -197,6 +209,7 @@ main {
   margin-top: auto;
   box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.1);
 }
+
 .footer-content {
   max-width: 1200px;
   margin: 0 auto;
@@ -204,28 +217,32 @@ main {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 3rem;
 }
+
 .footer-section h3 {
   color: #333;
   margin-bottom: 1.5rem;
   font-size: 1.2rem;
 }
+
 .footer-section ul {
   list-style: none;
 }
+
 .footer-section ul li {
   margin-bottom: 0.75rem;
 }
+
 .footer-section a {
   color: #666;
   text-decoration: none;
   transition: color 0.3s ease;
   font-size: 0.95rem;
 }
+
 .footer-section a:hover {
   color: #0056b3;
 }
 
-/* Removed social-links and social-icon styles as that section is removed from HTML */
 .footer-bottom {
   text-align: center;
   margin-top: 3rem;
