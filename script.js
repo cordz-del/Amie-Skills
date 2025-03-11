@@ -129,7 +129,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }, { threshold: 0.1 });
-  
   document.querySelectorAll('.emotion-box, .skill-card').forEach(el => {
     observer.observe(el);
   });
@@ -145,33 +144,14 @@ document.addEventListener('DOMContentLoaded', function() {
   };
 
   // -------------------------------
-  // Logout Functionality
+  // Logout Functionality (Simplified)
   // -------------------------------
+  // Instead of calling a logout endpoint, simply clear localStorage and redirect.
   const logoutButton = document.getElementById('logoutButton');
   if (logoutButton) {
-    logoutButton.addEventListener('click', async function() {
-      try {
-        const token = localStorage.getItem('token');
-        if (!token) throw new Error('No authentication token found');
-        const response = await fetch(`${API_BASE_URL}/api/logout`, {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          },
-          credentials: 'include',
-          mode: 'cors'
-        });
-        if (!response.ok) {
-          const data = await response.json();
-          throw new Error(data.error || 'Logout failed');
-        }
-        localStorage.clear();
-        window.location.href = 'https://cordz-del.github.io/Log-in-Amie/';
-      } catch (error) {
-        console.error('Logout error:', error);
-        alert('Error logging out. Please try again.');
-      }
+    logoutButton.addEventListener('click', function() {
+      localStorage.clear();
+      window.location.href = 'https://cordz-del.github.io/Log-in-Amie/';
     });
   }
 });
