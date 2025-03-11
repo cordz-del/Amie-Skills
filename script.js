@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', function() {
   // -------------------------------
   const emotionBoxes = document.querySelectorAll('.emotion-box');
   let moodSelected = false;
-  
+  const SHARED_MOOD_KEY = "sharedMoodData";
+
   // Function to record mood via backend API
   async function recordMood(emotion) {
     const username = localStorage.getItem('currentUser');
@@ -35,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
       console.error("Error recording mood:", error);
     }
   }
-  
+
   // Updated mood box click handler
   window.handleMoodClick = async function(elem) {
     if (moodSelected) return; // Prevent multiple selections
@@ -49,8 +50,8 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
     
-    // Retrieve emotion from the element's data attribute
-    const emotion = elem.dataset.emotion || "Unknown";
+    // Retrieve emotion from data attribute
+    const emotion = elem.getAttribute('data-emotion') || "Unknown";
     
     // Record the mood via the backend
     await recordMood(emotion);
@@ -58,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Apply spin animation to the clicked box
     elem.classList.add('spin-animation');
     
-    // After spin animation, replace content with check mark and message
+    // After the spin animation, replace content with a check mark and confirmation message
     setTimeout(() => {
       elem.innerHTML = `<div class="check-mark">&#10003;</div>
                         <p>Your feeling has been logged.</p>`;
@@ -142,6 +143,37 @@ document.addEventListener('DOMContentLoaded', function() {
     if (modal) modal.style.display = 'none';
     // Additional functionality based on the action can be added here.
   };
+
+  // -------------------------------
+  // Logout Functionality
+  // -------------------------------
+  const logoutButton = document.getElementById('logoutButton');
+  if (logoutButton) {
+    logoutButton.addEventListener('click', async function() {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) throw new Error('No authentication token found');
+        const response = await fetch(`${API_BASE_URL}/api/logout`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          },
+          credentials: 'include',
+          mode: 'cors'
+        });
+        if (!response.ok) {
+          const data = await response.json();
+          throw new Error(data.error || 'Logout failed');
+        }
+        localStorage.clear();
+        window.location.href = 'https://cordz-del.github.io/Log-in-Amie/';
+      } catch (error) {
+        console.error('Logout error:', error);
+        alert('Error logging out. Please try again.');
+      }
+    });
+  }
 });
 
 // --- Additional CSS injected dynamically ---
@@ -201,8 +233,6 @@ const styleSheet = `
     }
   }
 `;
-
-// Inject the additional CSS into the document
 const styleElement = document.createElement('style');
 styleElement.textContent = styleSheet;
 document.head.appendChild(styleElement);
