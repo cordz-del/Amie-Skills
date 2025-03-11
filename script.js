@@ -1,10 +1,43 @@
+const API_BASE_URL = 'https://nodejs-amiemongodb.replit.app';
+
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-  // Emotion boxes interaction (new behavior)
+  // -------------------------------
+  // Emotion Boxes Interaction & Mood Recording
+  // -------------------------------
   const emotionBoxes = document.querySelectorAll('.emotion-box');
   let moodSelected = false;
   
-  window.handleMoodClick = function(elem) {
+  // Function to record mood via backend API
+  async function recordMood(emotion) {
+    const username = localStorage.getItem('currentUser');
+    if (!username) {
+      console.error("No user logged in. Cannot record mood.");
+      return;
+    }
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/mood`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        credentials: 'include',
+        mode: 'cors',
+        body: JSON.stringify({ username, emotion, intensity: 5, notes: "" })
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || `HTTP error! status: ${response.status}`);
+      }
+      console.log("Mood recorded successfully:", data);
+    } catch (error) {
+      console.error("Error recording mood:", error);
+    }
+  }
+  
+  // Updated mood box click handler
+  window.handleMoodClick = async function(elem) {
     if (moodSelected) return; // Prevent multiple selections
     moodSelected = true;
     
@@ -16,10 +49,16 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
     
+    // Retrieve emotion from the element's data attribute
+    const emotion = elem.dataset.emotion || "Unknown";
+    
+    // Record the mood via the backend
+    await recordMood(emotion);
+    
     // Apply spin animation to the clicked box
     elem.classList.add('spin-animation');
     
-    // After the spin, replace content with a green check mark and confirmation message
+    // After spin animation, replace content with check mark and message
     setTimeout(() => {
       elem.innerHTML = `<div class="check-mark">&#10003;</div>
                         <p>Your feeling has been logged.</p>`;
@@ -33,24 +72,26 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 1000);
   };
 
-  // Skill buttons interaction
+  // -------------------------------
+  // Skill Buttons Interaction
+  // -------------------------------
   const skillButtons = document.querySelectorAll('.skill-btn');
   skillButtons.forEach(button => {
     button.addEventListener('click', function(e) {
       e.preventDefault();
       const skillName = this.parentElement.querySelector('h3').textContent;
       console.log(`Starting ${skillName}`);
-      // Add a brief "clicked" animation class
+      // Brief "clicked" animation
       this.classList.add('clicked');
-      
-      // Remove the animation class after the animation completes
       setTimeout(() => {
         this.classList.remove('clicked');
       }, 300);
     });
   });
 
-  // Create a mobile nav toggle (hamburger icon) for responsive menus
+  // -------------------------------
+  // Mobile Navigation Toggle
+  // -------------------------------
   const navToggle = document.createElement('button');
   navToggle.className = 'nav-toggle';
   navToggle.innerHTML = '<span></span><span></span><span></span>';
@@ -58,28 +99,28 @@ document.addEventListener('DOMContentLoaded', function() {
   const navLinks = document.querySelector('.nav-links');
   if (navLinks) {
     document.querySelector('.nav-container').insertBefore(navToggle, navLinks);
-  
     navToggle.addEventListener('click', function() {
       navLinks.classList.toggle('show');
       this.classList.toggle('active');
     });
   }
   
-  // Smooth scroll for anchor links (e.g., #someSection)
+  // -------------------------------
+  // Smooth Scroll for Anchor Links
+  // -------------------------------
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       e.preventDefault();
       const target = document.querySelector(this.getAttribute('href'));
       if (target) {
-        target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     });
   });
   
-  // Fade-in animation when elements scroll into view
+  // -------------------------------
+  // Fade-in Animation on Scroll
+  // -------------------------------
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -88,16 +129,18 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }, { threshold: 0.1 });
   
-  // Apply the observer to emotion boxes and skill cards
   document.querySelectorAll('.emotion-box, .skill-card').forEach(el => {
     observer.observe(el);
   });
   
-  // Modal choice functions
+  // -------------------------------
+  // Modal Choice Functions
+  // -------------------------------
   window.chooseAction = function(action) {
     console.log(`User chose to ${action}`);
-    // Here you can add additional functionality based on the user's choice.
-    document.getElementById('actionModal').style.display = 'none';
+    const modal = document.getElementById('actionModal');
+    if (modal) modal.style.display = 'none';
+    // Additional functionality based on the action can be added here.
   };
 });
 
