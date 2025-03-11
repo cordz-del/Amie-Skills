@@ -81,7 +81,10 @@
         <h1>Amie</h1>
         <p class="description">Emotional & Mental Health Assistant</p>
       </div>
-      <!-- Navigation links removed as per requirement -->
+      <!-- Logout button added to header -->
+      <div class="logout-container">
+        <button id="logoutButton" class="btn logout">Log Out</button>
+      </div>
     </nav>
   </header>
 
@@ -90,32 +93,27 @@
     <section class="emotion-section">
       <h2>Please choose based on the options below how you are feeling right now?</h2>
       <div class="emotion-grid">
-        <div class="emotion-box stressed" onclick="handleMoodClick(this)">
+        <div class="emotion-box stressed" data-emotion="Stressed" onclick="handleMoodClick(this)">
           <h3>Stressed</h3>
           <p>A state of mental or emotional strain or tension</p>
         </div>
-
-        <div class="emotion-box sad" onclick="handleMoodClick(this)">
+        <div class="emotion-box sad" data-emotion="Sad" onclick="handleMoodClick(this)">
           <h3>Sad</h3>
           <p>A feeling of sorrow or unhappiness.</p>
         </div>
-
-        <div class="emotion-box angry" onclick="handleMoodClick(this)">
+        <div class="emotion-box angry" data-emotion="Angry" onclick="handleMoodClick(this)">
           <h3>Angry</h3>
           <p>A strong feeling of displeasure or hostility</p>
         </div>
-
-        <div class="emotion-box anxiety" onclick="handleMoodClick(this)">
+        <div class="emotion-box anxiety" data-emotion="Anxiety" onclick="handleMoodClick(this)">
           <h3>Anxiety</h3>
           <p>A feeling of worry or apprehension.</p>
         </div>
-
-        <div class="emotion-box depressed" onclick="handleMoodClick(this)">
+        <div class="emotion-box depressed" data-emotion="Depressed" onclick="handleMoodClick(this)">
           <h3>Depressed</h3>
           <p>A mood matched by deep sadness and low energy</p>
         </div>
-
-        <div class="emotion-box lonely" onclick="handleMoodClick(this)">
+        <div class="emotion-box lonely" data-emotion="Lonely" onclick="handleMoodClick(this)">
           <h3>Lonely</h3>
           <p>A sense of isolation or solitude.</p>
         </div>
@@ -184,23 +182,21 @@
           <li><a href="support.html">Support</a></li>
         </ul>
       </div>
-      <!-- "Connect With Us" section removed as per requirement -->
     </div>
     <div class="footer-bottom">
       <p>&copy; 2025 Amie. All rights reserved.</p>
     </div>
   </footer>
 
-  <!-- Mood Button Click Script -->
+  <!-- Scripts -->
   <script>
+    // Wait for the DOM to be fully loaded
     document.addEventListener('DOMContentLoaded', function() {
+      // Emotion Boxes Interaction for Mood Recording
       const emotionBoxes = document.querySelectorAll('.emotion-box');
       let moodSelected = false;
-      
-      // Key in localStorage for shared data
       const SHARED_MOOD_KEY = "sharedMoodData";
 
-      // Called when user clicks an emotion box
       window.handleMoodClick = function(elem) {
         if (moodSelected) return;
         moodSelected = true;
@@ -212,16 +208,15 @@
             box.style.pointerEvents = 'none';
           }
         });
-        
+
         // Apply spin animation
         elem.classList.add('spin-animation');
-        
-        // After spin animation completes (1s), log the mood and show check mark
-        setTimeout(() => {
-          // 1) Identify the mood from the second class (e.g. "stressed", "sad", etc.)
-          const moodName = elem.classList[1];
 
-          // 2) Save this mood to localStorage so that Mood-Record-Page can read it
+        setTimeout(() => {
+          // Retrieve mood from data attribute (or fallback to second class)
+          const moodName = elem.getAttribute('data-emotion') || elem.classList[1] || "unknown";
+
+          // Save mood entry to localStorage (for Mood-Record-Page, etc.)
           const newMoodEntry = {
             timestamp: new Date().toISOString(),
             mood: moodName,
@@ -231,27 +226,165 @@
           sharedData.push(newMoodEntry);
           localStorage.setItem(SHARED_MOOD_KEY, JSON.stringify(sharedData));
 
-          // 3) Replace box content with a check mark
-          elem.innerHTML = `
-            <div class="check-mark">&#10003;</div>
-            <p>Your feeling has been logged.</p>
-          `;
+          // Replace box content with a check mark and message
+          elem.innerHTML = `<div class="check-mark">&#10003;</div>
+                            <p>Your feeling has been logged.</p>`;
 
-          // 4) After a short delay, open the modal window
+          // After a short delay, open the modal window
           setTimeout(() => {
             document.getElementById('actionModal').style.display = 'block';
           }, 500);
         }, 1000);
       };
-      
-      // Called when user clicks Vent or Exercise in the modal
+
+      // Modal choice function
       window.chooseAction = function(action) {
         console.log(`User chose to ${action}`);
-        // Hide the modal
         document.getElementById('actionModal').style.display = 'none';
-        // Additional logic could go here (e.g., open a new page or show more text)
       };
+
+      // Skill Buttons Interaction
+      const skillButtons = document.querySelectorAll('.skill-btn');
+      skillButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+          e.preventDefault();
+          const skillName = this.parentElement.querySelector('h3').textContent;
+          console.log(`Starting ${skillName}`);
+          this.classList.add('clicked');
+          setTimeout(() => {
+            this.classList.remove('clicked');
+          }, 300);
+        });
+      });
+
+      // Mobile Navigation Toggle for Responsive Menus
+      const navToggle = document.createElement('button');
+      navToggle.className = 'nav-toggle';
+      navToggle.innerHTML = '<span></span><span></span><span></span>';
+      const navLinks = document.querySelector('.nav-links');
+      if (navLinks) {
+        document.querySelector('.nav-container').insertBefore(navToggle, navLinks);
+        navToggle.addEventListener('click', function() {
+          navLinks.classList.toggle('show');
+          this.classList.toggle('active');
+        });
+      }
+
+      // Smooth Scroll for Anchor Links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+
+      // Fade-in Animation on Scroll
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in');
+          }
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.emotion-box, .skill-card').forEach(el => {
+        observer.observe(el);
+      });
+
+      // Logout functionality (assumes logout handler in script.js)
+      const logoutButton = document.getElementById('logoutButton');
+      if (logoutButton) {
+        logoutButton.addEventListener('click', async function() {
+          try {
+            const token = localStorage.getItem('token');
+            if (!token) throw new Error('No authentication token found');
+            const response = await fetch(`${API_BASE_URL}/api/logout`, {
+              method: 'POST',
+              headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+              },
+              credentials: 'include',
+              mode: 'cors'
+            });
+            if (!response.ok) {
+              const data = await response.json();
+              throw new Error(data.error || 'Logout failed');
+            }
+            localStorage.clear();
+            window.location.href = 'https://cordz-del.github.io/Log-in-Amie/';
+          } catch (error) {
+            console.error('Logout error:', error);
+            alert('Error logging out. Please try again.');
+          }
+        });
+      }
     });
+  </script>
+
+  <!-- Additional CSS injected dynamically -->
+  <script>
+    const styleSheet = `
+      /* Fade-in animation for elements */
+      .fade-in {
+        animation: fadeIn 0.5s ease-in forwards;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      
+      /* Brief "clicked" scale animation for skill buttons */
+      .skill-btn.clicked {
+        transform: scale(0.95);
+      }
+      
+      /* Mobile nav toggle button (hamburger icon) */
+      .nav-toggle {
+        display: none;
+      }
+      @media (max-width: 768px) {
+        .nav-toggle {
+          display: block;
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 10px;
+          margin-left: auto;
+        }
+        .nav-toggle span {
+          display: block;
+          width: 25px;
+          height: 3px;
+          background-color: #333;
+          margin: 5px 0;
+          transition: 0.3s;
+        }
+        .nav-toggle.active span:nth-child(1) {
+          transform: rotate(45deg) translate(5px, 5px);
+        }
+        .nav-toggle.active span:nth-child(2) {
+          opacity: 0;
+        }
+        .nav-toggle.active span:nth-child(3) {
+          transform: rotate(-45deg) translate(7px, -7px);
+        }
+        .nav-links {
+          display: none;
+          width: 100%;
+          flex-direction: column;
+          align-items: center;
+        }
+        .nav-links.show {
+          display: flex;
+        }
+      }
+    `;
+    const styleElement = document.createElement('style');
+    styleElement.textContent = styleSheet;
+    document.head.appendChild(styleElement);
   </script>
 </body>
 </html>
