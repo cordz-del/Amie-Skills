@@ -35,6 +35,7 @@ body {
   align-items: center;
 }
 
+/* Logo Section */
 .logo {
   display: flex;
   flex-direction: column;
@@ -54,6 +55,27 @@ body {
   font-size: 0.9rem;
   color: #001f3f;
   margin-top: -5px;
+}
+
+/* Logout Button Styles */
+.logout-container {
+  display: flex;
+  align-items: center;
+}
+
+.btn.logout {
+  padding: 0.5rem 1rem;
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn.logout:hover {
+  background-color: #003d82;
 }
 
 /* (Navigation links removed as per requirement) */
@@ -194,7 +216,7 @@ main {
   background-color: #003d82;
 }
 
-/* Disabled Button Style (for Meditation, Breathing Exercises, Journaling) */
+/* Disabled Button Style */
 .disabled,
 .skill-btn.disabled {
   background-color: #ccc !important;
@@ -294,4 +316,17 @@ main {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
+}
+
+/* --- Modal Styles for Create Profile --- */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
 }
