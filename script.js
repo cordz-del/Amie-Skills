@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Apply spin animation to the clicked box
     elem.classList.add('spin-animation');
     
-    // After the spin animation, replace content with a check mark and confirmation message
+    // After spin animation, replace content with check mark and confirmation message
     setTimeout(() => {
       elem.innerHTML = `<div class="check-mark">&#10003;</div>
                         <p>Your feeling has been logged.</p>`;
