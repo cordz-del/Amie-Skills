@@ -8,6 +8,11 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
 
+  <!-- Define API_BASE_URL for inline scripts -->
+  <script>
+    const API_BASE_URL = 'https://nodejs-amiemongodb.replit.app';
+  </script>
+
   <!-- Inline style for mood animations and modal styling -->
   <style>
     /* Mood Button Animations */
@@ -192,12 +197,43 @@
   <script>
     // Wait for the DOM to be fully loaded
     document.addEventListener('DOMContentLoaded', function() {
-      // Emotion Boxes Interaction for Mood Recording
+      // -------------------------------
+      // Emotion Boxes Interaction & Mood Recording
+      // -------------------------------
       const emotionBoxes = document.querySelectorAll('.emotion-box');
       let moodSelected = false;
       const SHARED_MOOD_KEY = "sharedMoodData";
 
-      window.handleMoodClick = function(elem) {
+      // Function to record mood via backend API
+      async function recordMood(emotion) {
+        const username = localStorage.getItem('currentUser');
+        if (!username) {
+          console.error("No user logged in. Cannot record mood.");
+          return;
+        }
+        try {
+          const response = await fetch(`${API_BASE_URL}/api/mood`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            credentials: 'include',
+            mode: 'cors',
+            body: JSON.stringify({ username, emotion, intensity: 5, notes: "" })
+          });
+          const data = await response.json();
+          if (!response.ok) {
+            throw new Error(data.error || `HTTP error! status: ${response.status}`);
+          }
+          console.log("Mood recorded successfully:", data);
+        } catch (error) {
+          console.error("Error recording mood:", error);
+        }
+      }
+
+      // Updated mood box click handler
+      window.handleMoodClick = async function(elem) {
         if (moodSelected) return;
         moodSelected = true;
 
@@ -213,7 +249,7 @@
         elem.classList.add('spin-animation');
 
         setTimeout(() => {
-          // Retrieve mood from data attribute (or fallback to second class)
+          // Retrieve mood from data attribute (or fallback)
           const moodName = elem.getAttribute('data-emotion') || elem.classList[1] || "unknown";
 
           // Save mood entry to localStorage (for Mood-Record-Page, etc.)
@@ -237,13 +273,9 @@
         }, 1000);
       };
 
-      // Modal choice function
-      window.chooseAction = function(action) {
-        console.log(`User chose to ${action}`);
-        document.getElementById('actionModal').style.display = 'none';
-      };
-
+      // -------------------------------
       // Skill Buttons Interaction
+      // -------------------------------
       const skillButtons = document.querySelectorAll('.skill-btn');
       skillButtons.forEach(button => {
         button.addEventListener('click', function(e) {
@@ -257,7 +289,9 @@
         });
       });
 
+      // -------------------------------
       // Mobile Navigation Toggle for Responsive Menus
+      // -------------------------------
       const navToggle = document.createElement('button');
       navToggle.className = 'nav-toggle';
       navToggle.innerHTML = '<span></span><span></span><span></span>';
@@ -270,7 +304,9 @@
         });
       }
 
+      // -------------------------------
       // Smooth Scroll for Anchor Links
+      // -------------------------------
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
           e.preventDefault();
@@ -281,7 +317,9 @@
         });
       });
 
+      // -------------------------------
       // Fade-in Animation on Scroll
+      // -------------------------------
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -293,7 +331,19 @@
         observer.observe(el);
       });
 
-      // Logout functionality (assumes logout handler in script.js)
+      // -------------------------------
+      // Modal Choice Functions
+      // -------------------------------
+      window.chooseAction = function(action) {
+        console.log(`User chose to ${action}`);
+        const modal = document.getElementById('actionModal');
+        if (modal) modal.style.display = 'none';
+        // Additional functionality based on the action can be added here.
+      };
+
+      // -------------------------------
+      // Logout Functionality
+      // -------------------------------
       const logoutButton = document.getElementById('logoutButton');
       if (logoutButton) {
         logoutButton.addEventListener('click', async function() {
