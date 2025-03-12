@@ -22,7 +22,7 @@
     .modal-button.vent { background-color: #0056b3; color: #fff; }
     .modal-button.exercise { background-color: #003d82; color: #fff; }
     .check-mark { color: green; font-size: 2rem; margin-bottom: 0.5rem; }
-  </style>
+  </script>
 </head>
 <body>
   <header class="main-header">
@@ -45,7 +45,26 @@
           <h3>Stressed</h3>
           <p>A state of mental or emotional strain or tension</p>
         </div>
-        <!-- Other emotion-boxes unchanged -->
+        <div class="emotion-box sad" data-emotion="Sad" onclick="handleMoodClick(this)">
+          <h3>Sad</h3>
+          <p>A feeling of sorrow or unhappiness.</p>
+        </div>
+        <div class="emotion-box angry" data-emotion="Angry" onclick="handleMoodClick(this)">
+          <h3>Angry</h3>
+          <p>A strong feeling of displeasure or hostility</p>
+        </div>
+        <div class="emotion-box anxiety" data-emotion="Anxiety" onclick="handleMoodClick(this)">
+          <h3>Anxiety</h3>
+          <p>A feeling of worry or apprehension.</p>
+        </div>
+        <div class="emotion-box depressed" data-emotion="Depressed" onclick="handleMoodClick(this)">
+          <h3>Depressed</h3>
+          <p>A mood matched by deep sadness and low energy</p>
+        </div>
+        <div class="emotion-box lonely" data-emotion="Lonely" onclick="handleMoodClick(this)">
+          <h3>Lonely</h3>
+          <p>A sense of isolation or solitude.</p>
+        </div>
       </div>
     </section>
 
@@ -78,18 +97,4 @@
 
   <div id="actionModal" class="modal">
     <div class="modal-content">
-      <p>Please choose below: Vent about your mood or proceed to an exercise tailored to your feeling.</p>
-      <button class="modal-button vent" onclick="chooseAction('vent')">Vent</button>
-      <button class="modal-button exercise" onclick="chooseAction('exercise')">Exercise</button>
-    </div>
-  </div>
-
-  <footer class="main-footer">
-    <div class="footer-bottom">
-      <p>&copy; 2025 Amie. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
-</body>
-</html>
+      <p>Please choose below: Vent about your mood or proceed to
