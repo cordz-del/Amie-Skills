@@ -57,6 +57,10 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.classList.add('spin-animation');
     // Force reflow to ensure animation starts
     void elem.offsetWidth;
+    // Remove spin-animation class after 1 second so the animation can run fully
+    setTimeout(() => {
+      elem.classList.remove('spin-animation');
+    }, 1000);
     
     // Record the mood via the backend concurrently
     await recordMood(emotion);
@@ -87,6 +91,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 2000);
   };
 
+  // -------------------------------
+  // Add hover effect to emotion boxes
+  // -------------------------------
+  emotionBoxes.forEach(box => {
+    box.addEventListener('mouseover', function() {
+      if (!this.classList.contains('disabled')) {
+        this.classList.add('hovered');
+      }
+    });
+    box.addEventListener('mouseout', function() {
+      this.classList.remove('hovered');
+    });
+  });
+  
   // -------------------------------
   // Skill Buttons Interaction
   // -------------------------------
@@ -187,6 +205,21 @@ const styleSheet =
   .nav-toggle {
     display: none;
   }
+  
+  /* Spin Animation for Emotion Boxes */
+  .spin-animation {
+    animation: spin 1s linear;
+  }
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  /* Hover effect for emotion boxes */
+  .emotion-box.hovered {
+    transform: scale(1.1);
+  }
+  
   @media (max-width: 768px) {
     .nav-toggle {
       display: block;
