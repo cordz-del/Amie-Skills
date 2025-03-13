@@ -55,6 +55,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Start spin animation immediately
     elem.classList.add('spin-animation');
+    // Force reflow to ensure animation starts
+    void elem.offsetWidth;
     
     // Record the mood via the backend concurrently
     await recordMood(emotion);
@@ -224,4 +226,3 @@ const styleSheet =
 const styleElement = document.createElement('style');
 styleElement.textContent = styleSheet;
 document.head.appendChild(styleElement);
-
