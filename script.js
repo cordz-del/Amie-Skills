@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Retrieve emotion from data attribute
     const emotion = elem.getAttribute('data-emotion') || "Unknown";
     
-    // Start spin animation immediately
+    // Trigger spin animation immediately
     elem.classList.add('spin-animation');
     // Force reflow to ensure animation starts
     void elem.offsetWidth;
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Record the mood via the backend concurrently
     await recordMood(emotion);
     
-    // After spin animation, update the button content and open the modal
+    // After 2000ms, update the button content and then after 1500ms, open the modal
     setTimeout(() => {
       // Save mood entry to localStorage (for Mood-Record-Page, etc.)
       const newMoodEntry = {
@@ -77,14 +77,14 @@ document.addEventListener('DOMContentLoaded', function() {
       elem.innerHTML = `<div class="check-mark">&#10003;</div>
                         <p>Your feeling has been logged.</p>`;
 
-      // After a further delay, open the modal window
+      // After a further delay (1500ms), open the modal window
       setTimeout(() => {
         const modal = document.getElementById('actionModal');
         if (modal) {
           modal.style.display = 'block';
         }
-      }, 1500); // increased delay for modal pop-up
-    }, 2000); // increased delay for check mark update
+      }, 1500);
+    }, 2000);
   };
 
   // -------------------------------
@@ -226,4 +226,3 @@ const styleSheet =
 const styleElement = document.createElement('style');
 styleElement.textContent = styleSheet;
 document.head.appendChild(styleElement);
-
