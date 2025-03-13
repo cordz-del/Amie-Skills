@@ -126,7 +126,7 @@ main {
 }
 
 .emotion-box:hover {
-  transform: translateY(-5px);
+  transform: translateY(-5px) scale(1.05);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
@@ -333,7 +333,7 @@ main {
 
 /* --- Spin Animation for Emotion Boxes --- */
 .spin-animation {
-  animation: spin 1s forwards;
+  animation: spin 2s forwards;
   transition: none !important;
 }
 @keyframes spin {
