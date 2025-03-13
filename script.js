@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://nodejs-amiemongodb.replit.app'; 
+const API_BASE_URL = 'https://nodejs-amiemongodb.replit.app';
 
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
       return;
     }
     try {
-      const response = await fetch(${API_BASE_URL}/api/mood, {
+      const response = await fetch(`${API_BASE_URL}/api/mood`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
       });
       const data = await response.json();
       if (!response.ok) {
-        throw new Error(data.error || HTTP error! status: ${response.status});
+        throw new Error(data.error || `HTTP error! status: ${response.status}`);
       }
       console.log("Mood recorded successfully:", data);
     } catch (error) {
@@ -61,8 +61,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // After spin animation, replace content with check mark and confirmation message
     setTimeout(() => {
-      elem.innerHTML = <div class="check-mark">&#10003;</div>
-                        <p>Your feeling has been logged.</p>;
+      elem.innerHTML = `<div class="check-mark">&#10003;</div>
+                        <p>Your feeling has been logged.</p>`;
       // After a short delay, open the modal pop-up
       setTimeout(() => {
         const modal = document.getElementById('actionModal');
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
     button.addEventListener('click', function(e) {
       e.preventDefault();
       const skillName = this.parentElement.querySelector('h3').textContent;
-      console.log(Starting ${skillName});
+      console.log(`Starting ${skillName}`);
       // Brief "clicked" animation
       this.classList.add('clicked');
       setTimeout(() => {
@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Modal Choice Functions
   // -------------------------------
   window.chooseAction = function(action) {
-    console.log(User chose to ${action});
+    console.log(`User chose to ${action}`);
     const modal = document.getElementById('actionModal');
     if (modal) modal.style.display = 'none';
     // Additional functionality based on the action can be added here.
@@ -158,8 +158,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // --- Additional CSS injected dynamically ---
 const styleSheet = 
-  /* Fade-in animation for elements */
-  .fade-in {
+  `.fade-in {
     animation: fadeIn 0.5s ease-in forwards;
   }
   @keyframes fadeIn {
@@ -167,12 +166,10 @@ const styleSheet =
     to   { opacity: 1; transform: translateY(0); }
   }
   
-  /* Brief "clicked" scale animation for skill buttons */
   .skill-btn.clicked {
     transform: scale(0.95);
   }
   
-  /* Mobile nav toggle button (hamburger icon) */
   .nav-toggle {
     display: none;
   }
@@ -211,8 +208,7 @@ const styleSheet =
     .nav-links.show {
       display: flex;
     }
-  }
-;
+  }`;
 const styleElement = document.createElement('style');
 styleElement.textContent = styleSheet;
 document.head.appendChild(styleElement);
