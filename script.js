@@ -226,3 +226,4 @@ const styleSheet =
 const styleElement = document.createElement('style');
 styleElement.textContent = styleSheet;
 document.head.appendChild(styleElement);
+
