@@ -197,9 +197,6 @@
   <script>
     // Wait for the DOM to be fully loaded
     document.addEventListener('DOMContentLoaded', function() {
-      // -------------------------------
-      // Emotion Boxes Interaction & Mood Recording
-      // -------------------------------
       const emotionBoxes = document.querySelectorAll('.emotion-box');
       let moodSelected = false;
       const SHARED_MOOD_KEY = "sharedMoodData";
@@ -212,7 +209,7 @@
           return;
         }
         try {
-          const response = await fetch(${API_BASE_URL}/api/mood, {
+          const response = await fetch(`${API_BASE_URL}/api/mood`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -224,7 +221,7 @@
           });
           const data = await response.json();
           if (!response.ok) {
-            throw new Error(data.error || HTTP error! status: ${response.status});
+            throw new Error(data.error || `HTTP error! status: ${response.status}`);
           }
           console.log("Mood recorded successfully:", data);
         } catch (error) {
@@ -232,7 +229,7 @@
         }
       }
 
-      // Updated mood box click handler
+      // Mood button click handler
       window.handleMoodClick = async function(elem) {
         if (moodSelected) return;
         moodSelected = true;
@@ -245,26 +242,27 @@
           }
         });
 
+        // Retrieve emotion from data attribute and record it
+        const emotion = elem.getAttribute('data-emotion') || "Unknown";
+        await recordMood(emotion);
+
         // Apply spin animation
         elem.classList.add('spin-animation');
 
         setTimeout(() => {
-          // Retrieve mood from data attribute (or fallback)
-          const moodName = elem.getAttribute('data-emotion') || elem.classList[1] || "unknown";
-
           // Save mood entry to localStorage (for Mood-Record-Page, etc.)
           const newMoodEntry = {
             timestamp: new Date().toISOString(),
-            mood: moodName,
+            mood: emotion,
             notes: "Logged from Amie-Skills"
           };
           let sharedData = JSON.parse(localStorage.getItem(SHARED_MOOD_KEY) || "[]");
           sharedData.push(newMoodEntry);
           localStorage.setItem(SHARED_MOOD_KEY, JSON.stringify(sharedData));
 
-          // Replace box content with a check mark and message
-          elem.innerHTML = <div class="check-mark">&#10003;</div>
-                            <p>Your feeling has been logged.</p>;
+          // Replace box content with a check mark and confirmation message
+          elem.innerHTML = `<div class="check-mark">&#10003;</div>
+                            <p>Your feeling has been logged.</p>`;
 
           // After a short delay, open the modal window
           setTimeout(() => {
@@ -273,15 +271,13 @@
         }, 1000);
       };
 
-      // -------------------------------
-      // Skill Buttons Interaction
-      // -------------------------------
+      // Skill buttons interaction
       const skillButtons = document.querySelectorAll('.skill-btn');
       skillButtons.forEach(button => {
         button.addEventListener('click', function(e) {
           e.preventDefault();
           const skillName = this.parentElement.querySelector('h3').textContent;
-          console.log(Starting ${skillName});
+          console.log(`Starting ${skillName}`);
           this.classList.add('clicked');
           setTimeout(() => {
             this.classList.remove('clicked');
@@ -289,9 +285,7 @@
         });
       });
 
-      // -------------------------------
-      // Mobile Navigation Toggle for Responsive Menus
-      // -------------------------------
+      // Mobile navigation toggle for responsive menus
       const navToggle = document.createElement('button');
       navToggle.className = 'nav-toggle';
       navToggle.innerHTML = '<span></span><span></span><span></span>';
@@ -304,9 +298,7 @@
         });
       }
 
-      // -------------------------------
-      // Smooth Scroll for Anchor Links
-      // -------------------------------
+      // Smooth scroll for anchor links
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
           e.preventDefault();
@@ -317,9 +309,7 @@
         });
       });
 
-      // -------------------------------
-      // Fade-in Animation on Scroll
-      // -------------------------------
+      // Fade-in animation on scroll
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -331,29 +321,25 @@
         observer.observe(el);
       });
 
-      // -------------------------------
-      // Modal Choice Functions
-      // -------------------------------
+      // Modal choice functions
       window.chooseAction = function(action) {
-        console.log(User chose to ${action});
+        console.log(`User chose to ${action}`);
         const modal = document.getElementById('actionModal');
         if (modal) modal.style.display = 'none';
         // Additional functionality based on the action can be added here.
       };
 
-      // -------------------------------
-      // Logout Functionality
-      // -------------------------------
+      // Logout functionality
       const logoutButton = document.getElementById('logoutButton');
       if (logoutButton) {
         logoutButton.addEventListener('click', async function() {
           try {
             const token = localStorage.getItem('token');
             if (!token) throw new Error('No authentication token found');
-            const response = await fetch(${API_BASE_URL}/api/logout, {
+            const response = await fetch(`${API_BASE_URL}/api/logout`, {
               method: 'POST',
               headers: {
-                'Authorization': Bearer ${token},
+                'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
               },
               credentials: 'include',
@@ -376,7 +362,7 @@
 
   <!-- Additional CSS injected dynamically -->
   <script>
-    const styleSheet = 
+    const styleSheet = `
       /* Fade-in animation for elements */
       .fade-in {
         animation: fadeIn 0.5s ease-in forwards;
@@ -431,7 +417,7 @@
           display: flex;
         }
       }
-    ;
+    `;
     const styleElement = document.createElement('style');
     styleElement.textContent = styleSheet;
     document.head.appendChild(styleElement);
