@@ -330,3 +330,12 @@ main {
   overflow: auto;
   background-color: rgba(0,0,0,0.4);
 }
+
+/* --- Spin Animation for Emotion Boxes --- */
+.spin-animation {
+  animation: spin 1s forwards;
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
