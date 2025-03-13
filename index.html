@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Amie - Emotional & Mental Health Assistant</title>
-  <!-- Link your updated stylesheet here -->
+  <!-- Link your updated stylesheet -->
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
 
@@ -13,7 +13,7 @@
     const API_BASE_URL = 'https://nodejs-amiemongodb.replit.app';
   </script>
 
-  <!-- Inline style for modal styling only (spin animation removed to avoid conflict with external style.css) -->
+  <!-- Inline style for modal styling only (removed spin animation definitions) -->
   <style>
     /* Modal styling */
     .modal {
@@ -59,7 +59,6 @@
       background-color: #003d82;
       color: #fff;
     }
-
     /* Green check mark styling */
     .check-mark {
       color: green;
@@ -73,11 +72,10 @@
   <header class="main-header">
     <nav class="nav-container">
       <div class="logo">
-        <!-- Text-based logo only, matching Log-In-Amie -->
+        <!-- Text-based logo only -->
         <h1>Amie</h1>
         <p class="description">Emotional & Mental Health Assistant</p>
       </div>
-      <!-- Logout button added to header -->
       <div class="logout-container">
         <button id="logoutButton" class="btn logout">Log Out</button>
       </div>
@@ -117,24 +115,24 @@
     </section>
 
     <section class="skills-section">
-      <h2>Emotional Skills & Resources</h2>
+      <h2>Emotional Skills &amp; Resources</h2>
       <div class="skills-grid">
-        <div class="skill-card">
+        <div class="skill-card fade-in">
           <h3>Meditation</h3>
           <p>Learn mindfulness techniques for emotional balance</p>
           <button class="skill-btn disabled" disabled>Start Practice</button>
         </div>
-        <div class="skill-card">
+        <div class="skill-card fade-in">
           <h3>Breathing Exercises</h3>
           <p>Simple breathing techniques for stress relief</p>
           <button class="skill-btn disabled" disabled>Begin Exercise</button>
         </div>
-        <div class="skill-card">
+        <div class="skill-card fade-in">
           <h3>Journaling</h3>
           <p>Express your thoughts and feelings through writing</p>
           <button class="skill-btn disabled" disabled>Open Journal</button>
         </div>
-        <div class="skill-card">
+        <div class="skill-card fade-in">
           <h3>Mood Tracking</h3>
           <p>Monitor and understand your emotional patterns</p>
           <button class="skill-btn" onclick="window.open('https://cordz-del.github.io/Mood-Record-Page/', '_blank')">
