@@ -77,14 +77,14 @@ document.addEventListener('DOMContentLoaded', function() {
       elem.innerHTML = `<div class="check-mark">&#10003;</div>
                         <p>Your feeling has been logged.</p>`;
 
-      // After a short delay, open the modal window
+      // After a further delay, open the modal window
       setTimeout(() => {
         const modal = document.getElementById('actionModal');
         if (modal) {
           modal.style.display = 'block';
         }
-      }, 500);
-    }, 1000);
+      }, 1500); // increased delay for modal pop-up
+    }, 2000); // increased delay for check mark update
   };
 
   // -------------------------------
