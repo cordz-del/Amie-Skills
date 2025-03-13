@@ -53,17 +53,29 @@ document.addEventListener('DOMContentLoaded', function() {
     // Retrieve emotion from data attribute
     const emotion = elem.getAttribute('data-emotion') || "Unknown";
     
-    // Record the mood via the backend
-    await recordMood(emotion);
-    
-    // Apply spin animation to the clicked box
+    // Start spin animation immediately
     elem.classList.add('spin-animation');
     
-    // After spin animation, replace content with check mark and confirmation message
+    // Record the mood via the backend concurrently
+    await recordMood(emotion);
+    
+    // After spin animation, update the button content and open the modal
     setTimeout(() => {
+      // Save mood entry to localStorage (for Mood-Record-Page, etc.)
+      const newMoodEntry = {
+        timestamp: new Date().toISOString(),
+        mood: emotion,
+        notes: "Logged from Amie-Skills"
+      };
+      let sharedData = JSON.parse(localStorage.getItem(SHARED_MOOD_KEY) || "[]");
+      sharedData.push(newMoodEntry);
+      localStorage.setItem(SHARED_MOOD_KEY, JSON.stringify(sharedData));
+
+      // Replace box content with a check mark and confirmation message
       elem.innerHTML = `<div class="check-mark">&#10003;</div>
                         <p>Your feeling has been logged.</p>`;
-      // After a short delay, open the modal pop-up
+
+      // After a short delay, open the modal window
       setTimeout(() => {
         const modal = document.getElementById('actionModal');
         if (modal) {
