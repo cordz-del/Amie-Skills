@@ -334,6 +334,7 @@ main {
 /* --- Spin Animation for Emotion Boxes --- */
 .spin-animation {
   animation: spin 1s forwards;
+  transition: none;
 }
 @keyframes spin {
   from { transform: rotate(0deg); }
